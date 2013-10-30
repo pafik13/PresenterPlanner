@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:orientation="vertical"
+    p1:minWidth="25px"
+    p1:minHeight="25px"
+    p1:layout_width="fill_parent"
+    p1:layout_height="fill_parent"
+    p1:id="@+id/llvMainMenu">
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="fill_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/llFirstRow"
+        p1:layout_weight="1">
+        <Button
+            p1:text="Просмотр слайдов"
+            p1:id="@+id/btnSlides"
+            p1:layout_width="fill_parent"
+            p1:layout_height="fill_parent"
+            p1:layout_weight="1"
+            p1:gravity="right|bottom" />
+        <Button
+            p1:text="Планировщик показов"
+            p1:id="@+id/btnPlanning"
+            p1:layout_width="fill_parent"
+            p1:layout_height="fill_parent"
+            p1:layout_weight="1"
+            p1:gravity="left|bottom" />
+    </LinearLayout>
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="fill_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/llSecondRow"
+        p1:layout_weight="1">
+        <Button
+            p1:text="Синхронизация данных"
+            p1:layout_width="fill_parent"
+            p1:layout_height="fill_parent"
+            p1:id="@+id/btnSync"
+            p1:layout_weight="1"
+            p1:gravity="right|top" />
+        <Button
+            p1:text="Ввод врачей и поликлиник"
+            p1:id="@+id/btnData"
+            p1:layout_width="fill_parent"
+            p1:layout_height="fill_parent"
+            p1:layout_weight="1"
+            p1:gravity="left|top" />
+    </LinearLayout>
+</LinearLayout>
