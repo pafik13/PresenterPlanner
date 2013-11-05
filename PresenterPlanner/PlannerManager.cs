@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+
+namespace PresenterPlanner.PlannerManager
+{
+	public class PlannerManager
+	{
+		public static DateTime[] GetWeeks(int weekNum, DateTime dayIn1stWeek) {
+			DateTime[] dt = new DateTime[7*weekNum];
+			int offset;
+			if (dayIn1stWeek.DayOfWeek == DayOfWeek.Sunday) {
+				offset = -6;
+			} else {
+				offset = 1 - (int)dayIn1stWeek.DayOfWeek;
+			}
+			DateTime startDay = dayIn1stWeek.AddDays (offset);
+
+			for (int i=0; i<=dt.Count() - 1; i++) {
+				dt [i] = startDay.AddDays (i);
+			}
+			return dt;
+		}
+	}
+}
+

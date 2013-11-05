@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/SecondNameLabel"
+            android:text="Фамилия:"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/SecondNameLabel" />
+        <EditText
+            android:id="@+id/txtSecondName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/SecondNameLabel"
+            android:imeOptions="actionNext"
+            android:maxLines="1"
+            android:inputType="textCapWords" />
+        <TextView
+            android:id="@+id/FirstNameLabel"
+            android:text="Имя:"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtSecondName" />
+        <EditText
+            android:id="@+id/txtFirstName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/FirstNameLabel"
+            android:maxLines="1"
+            android:imeOptions="actionNext"
+            android:inputType="textCapWords" />
+        <TextView
+            android:id="@+id/ThirdNameLabel"
+            android:text="Отчество:"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtFirstName" />
+        <EditText
+            android:id="@+id/txtThirdName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ThirdNameLabel"
+            android:maxLines="1"
+            android:imeOptions="actionNext"
+            android:inputType="textCapWords" />
+        <TextView
+            android:id="@+id/TelLabel"
+            android:text="Телефон:"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtThirdName" />
+        <EditText
+            android:id="@+id/txtTel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/TelLabel"
+            android:maxLines="1"
+            android:imeOptions="actionNext"
+            android:inputType="phone" />
+        <TextView
+            android:id="@+id/EmailLabel"
+            android:text="E-mail:"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtTelLabel" />
+        <EditText
+            android:id="@+id/txtEmail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/EmailLabel"
+            android:maxLines="1"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress" />
+        <TextView
+            android:id="@+id/SpecialityLabel"
+            android:text="Специальность:"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtEmail" />
+        <AutoCompleteTextView
+            android:id="@+id/actxtSpeciality"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/SpecialityLabel"
+            android:maxLines="1"
+            android:imeOptions="actionNext"
+            android:inputType="textCapWords" />
+        <TextView
+            android:id="@+id/PositionLabel"
+            android:text="Должность:"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/actxtSpeciality" />
+        <EditText
+            android:id="@+id/txtPosition"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/PositionLabel"
+            android:maxLines="1"
+            android:imeOptions="actionDone"
+            android:inputType="textCapWords" />
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spnHospital"
+            android:background="@android:color/darker_gray" />
+        <TextView
+            android:text="Расписание:"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtWorkTime"
+            android:layout_marginTop="10dp" />
+        <CheckBox
+            android:text="Использовать дни недели"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/chIsDays" />
+        <LinearLayout
+            android:id="@+id/lstDD"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ListView
+                android:id="@+id/lstWorkTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:scrollbars="vertical" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/btnCancelDelete"
+            android:text="Удалить"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnCancelDelete" />
+        <Button
+            android:id="@+id/btnSave"
+            android:text="Сохранить"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnSave" />
+    </LinearLayout>
+</ScrollView>

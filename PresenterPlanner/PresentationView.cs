@@ -8,7 +8,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using PresenterPlanner.Presentations;
+using PresenterPlanner.Lib;
 using Android.Locations;
 using System.Threading;
 
@@ -37,7 +37,7 @@ namespace PresenterPlanner
 			gestureDetector = new GestureDetector (this);
 			_locMgr = GetSystemService (Context.LocationService) as LocationManager;
 
-			preses = Presentations.Presentations.GetPresentations ();
+			preses = Presentations.GetPresentations ();
 			ivSlide = FindViewById<ImageView> (Resource.Id.ivSlide);
 
 			selectedPresent = Intent.GetIntExtra ("presentationID", 0);

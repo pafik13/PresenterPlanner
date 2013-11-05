@@ -8,7 +8,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using PresenterPlanner.Presentations;
+using PresenterPlanner.Lib;
 
 namespace PresenterPlanner
 {
@@ -23,7 +23,7 @@ namespace PresenterPlanner
 			base.OnCreate (bundle);
 
 			// Create your application here
-			preses = Presentations.Presentations.GetPresentations (); 
+			preses = Presentations.GetPresentations (); 
 
 			items = new List<Tuple<string>>();
 			for (int i=0; i<=preses.Count-1; i++) {

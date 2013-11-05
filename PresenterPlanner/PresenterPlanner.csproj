@@ -54,6 +54,28 @@
     <Compile Include="Lib\Presentations.cs" />
     <Compile Include="PresentationsList.cs" />
     <Compile Include="PresentationView.cs" />
+    <Compile Include="PlannerGrid.cs" />
+    <Compile Include="PlannerManager.cs" />
+    <Compile Include="DoctorsAndHospitals.cs" />
+    <Compile Include="Lib\Base\IEntity.cs" />
+    <Compile Include="Lib\Doctors\DoctorManager.cs" />
+    <Compile Include="Lib\Doctors\Doctor.cs" />
+    <Compile Include="Lib\Doctors\DoctorRepository.cs" />
+    <Compile Include="Lib\Hospitals\Hospital.cs" />
+    <Compile Include="Lib\Hospitals\HospitalManager.cs" />
+    <Compile Include="Lib\Hospitals\HospitalRepository.cs" />
+    <Compile Include="Adapters\HospitalSpinnerAdapter.cs" />
+    <Compile Include="Adapters\DoctorListAdapter.cs" />
+    <Compile Include="Adapters\WorkTimeListAdapter.cs" />
+    <Compile Include="Adapters\HospitalListAdapter.cs" />
+    <Compile Include="Lib\Common.cs" />
+    <Compile Include="Lib\OperatingShedule.cs" />
+    <Compile Include="Lib\DoctorPositions.cs" />
+    <Compile Include="Lib\DoctorSpecialitys.cs" />
+    <Compile Include="DoctorDetails.cs" />
+    <Compile Include="DoctorsList.cs" />
+    <Compile Include="HospitalDetails.cs" />
+    <Compile Include="HospitalsList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -68,9 +90,29 @@
     <AndroidResource Include="Resources\layout\PlannerGrid.axml" />
     <AndroidResource Include="Resources\layout\SlideShow.axml" />
     <AndroidResource Include="Resources\layout\PresentationView.axml" />
+    <AndroidResource Include="Resources\layout\PlannerGridItem.axml" />
+    <AndroidResource Include="Resources\drawable\ic_tab_doctors.xml" />
+    <AndroidResource Include="Resources\drawable\ic_tab_hospitals.xml" />
+    <AndroidResource Include="Resources\drawable\ic_tab_doctors_unselected.png" />
+    <AndroidResource Include="Resources\drawable\ic_tab_hospitals_unselected.png" />
+    <AndroidResource Include="Resources\drawable\ic_tab_doctors_selected.png" />
+    <AndroidResource Include="Resources\drawable\ic_tab_hospitals_selected.png" />
+    <AndroidResource Include="Resources\layout\DoctorsAndHospitals.axml" />
+    <AndroidResource Include="Resources\layout\DoctorsList.axml" />
+    <AndroidResource Include="Resources\layout\DoctorsListItem.axml" />
+    <AndroidResource Include="Resources\layout\DoctorDetails.axml" />
+    <AndroidResource Include="Resources\layout\HospitalDetails.axml" />
+    <AndroidResource Include="Resources\layout\HospitalsList.axml" />
+    <AndroidResource Include="Resources\layout\HospitalsListItem.axml" />
+    <AndroidResource Include="Resources\layout\HospitalsSpinnerItem.axml" />
+    <AndroidResource Include="Resources\layout\WorkTimeListItem.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Lib\" />
+    <Folder Include="Lib\Base\" />
+    <Folder Include="Lib\Doctors\" />
+    <Folder Include="Lib\Hospitals\" />
+    <Folder Include="Adapters\" />
   </ItemGroup>
 </Project>

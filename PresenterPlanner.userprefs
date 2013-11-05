@@ -1,9 +1,22 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True" />
+        <State expanded="True">
+          <Node name="PresenterPlanner" expanded="True">
+            <Node name="Adapters" expanded="True">
+              <Node name="DoctorListAdapter.cs" selected="True" />
+            </Node>
+            <Node name="Lib" expanded="True">
+              <Node name="Doctors" expanded="True" />
+              <Node name="Hospitals" expanded="True" />
+            </Node>
+            <Node name="Resources" expanded="True">
+              <Node name="layout" expanded="True" />
+            </Node>
+          </Node>
+        </State>
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />

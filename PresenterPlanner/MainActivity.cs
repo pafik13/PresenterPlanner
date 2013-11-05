@@ -33,6 +33,20 @@ namespace PresenterPlanner
 				StartActivity (presents);
 			};
 
+			Button btn3 = FindViewById <Button> (Resource.Id.btnPlanning);
+			btn3.Click += (object sender, EventArgs e) => 
+			{
+				var planning = new Intent ( this, typeof(PlannerGrid));
+				StartActivity (planning);
+			};
+
+			Button btn4 = FindViewById <Button> (Resource.Id.btnData);
+			btn4.Click += (object sender, EventArgs e) => 
+			{
+				var data = new Intent ( this, typeof(DoctorsAndHospitals));
+				StartActivity (data);
+			};
+
 		//	string storage = Path.Combine(BMSer.GetDirectory(),"MyTempDir");
 		//	File f = new File (storage + "t.xml");
 //			var serializer = new XmlSerializer (typeof(BMSer));

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <TextView
+        android:id="@+id/HospitllNameLabel"
+        android:text="Название:"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/HospitllNameLabel" />
+    <EditText
+        android:id="@+id/txtHospitalName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/HospitllNameLabel"
+        android:imeOptions="actionNext"
+        android:maxLines="1"
+        android:inputType="textCapWords" />
+    <TextView
+        android:id="@+id/HospitalAdressLabel"
+        android:text="Адрес:"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtHospitalName" />
+    <EditText
+        android:id="@+id/txtHospitalAdress"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/HospitalAdressLabel"
+        android:maxLines="1"
+        android:imeOptions="actionDone"
+        android:inputType="textCapWords" />
+    <Button
+        android:id="@+id/btnCancelDelete"
+        android:text="Удалить"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnCancelDelete" />
+    <Button
+        android:id="@+id/btnSave"
+        android:text="Сохранить"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSave" />
+</LinearLayout>

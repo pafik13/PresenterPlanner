@@ -5,7 +5,7 @@ using System.ComponentModel;
 using Android.Graphics;
 using Android.Widget;
 
-namespace PresenterPlanner.Presentations
+namespace PresenterPlanner.Lib
 {
 	public class Presentations
 	{
@@ -28,7 +28,7 @@ namespace PresenterPlanner.Presentations
 		}
 
 		static string DatabaseFilePath(){
-			return System.IO.Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath,"MyTempDir","presents.xml");
+			return System.IO.Path.Combine(Common.DatabaseFileDir(),"presents.xml");
 		}
 
 		public static List<Presentation> GetPresentations(){
