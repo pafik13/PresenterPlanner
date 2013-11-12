@@ -61,9 +61,12 @@ namespace PresenterPlanner
 			// wire up task click handler
 			if(lstDoctors != null) {
 				lstDoctors.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
-					doctors[e.Position].IsChosen = !doctors[e.Position].IsChosen;
-					Common.SetCheck(e.View, doctors[e.Position]);
-					DoctorManager.SaveDoctor (doctors[e.Position]);
+//					doctors[e.Position].IsChosen = !doctors[e.Position].IsChosen;
+//					Common.SetCheck(e.View, doctors[e.Position]);
+//					DoctorManager.SaveDoctor (doctors[e.Position]);
+					var doctorDetails = new Intent (this, typeof (DoctorDetailsActivity));
+					doctorDetails.PutExtra ("DoctorID", doctors[e.Position].ID);
+					StartActivity (doctorDetails);
 				};
 			}
 		}
@@ -85,12 +88,13 @@ namespace PresenterPlanner
 					var doctorDetails = new Intent (this, typeof (DoctorDetailsActivity));
 					doctorDetails.PutExtra ("DoctorID", doctors[info.Position].ID);
 					StartActivity (doctorDetails);
-					ContextItemClicked(item.TitleFormatted.ToString()); break;
-			case MENU_ITEM_DELETE:
-				DoctorManager.DeleteDoctor (doctors [info.Position].ID);
-				ContextItemClicked (item.TitleFormatted.ToString ());
-				RefreshList ();
-				break;
+					ContextItemClicked(item.TitleFormatted.ToString()); 
+					break;
+				case MENU_ITEM_DELETE:
+					DoctorManager.DeleteDoctor (doctors [info.Position].ID);
+					ContextItemClicked (item.TitleFormatted.ToString ());
+					RefreshList ();
+					break;
 			}
 			return base.OnOptionsItemSelected(item);
 		}

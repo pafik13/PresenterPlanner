@@ -41,31 +41,14 @@ namespace PresenterPlanner.Lib.Hospitals
 		}
 
 		public static string DatabaseFilePath {
-			get { 
-				var storeFilename = "HospitalDB.xml";
-//				#if SILVERLIGHT
-//				// Windows Phone expects a local path, not absolute
-//				var path = sqliteFilename;
-//				#else
-//
-//				#if __ANDROID__
-//				// Just use whatever directory SpecialFolder.Personal returns
-//				string libraryPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-//				#else
-//				// we need to put in /Library/ on iOS5.1 to meet Apple's iCloud terms
-//				// (they don't want non-user-generated data in Documents)
-//				string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
-//				string libraryPath = Path.Combine (documentsPath, "..", "Library"); // Library folder
-//				#endif
-				var path = Path.Combine (Common.DatabaseFileDir(), storeFilename);
-//				#endif		
-				return path;		
+			get { 	
+				return Path.Combine (Common.DatabaseFileDir(), "HospitalDB.xml");		
 			}
 		}
 
-		public static Hospital GetHospital(int id)
+		public static Hospital GetHospital (int id)
 		{
-			for (var t = 0; t< hospitals.Count; t++) {
+			for (var t = 0; t < hospitals.Count; t++) {
 				if (hospitals[t].ID == id)
 					return hospitals[t];
 			}
@@ -86,6 +69,42 @@ namespace PresenterPlanner.Lib.Hospitals
 				};
 			};
 			return selectedHospitals;
+		}
+
+		public static IEnumerable<Hospital> GetAvailableHospitals (int weekNum, DayOfWeek dayOfWeek)
+		{
+			List<Hospital> availableHospitals = new List<Hospital> ();
+			for (int h = 0; h < hospitals.Count; h++) {
+				int countOfWeek = 0;
+				int countDayOfWeek = 0;
+				for (int p = 0; p < hospitals[h].planners.Count; p++) {
+					if (hospitals[h].planners[p].weekNum == weekNum) {
+						countOfWeek++;
+						if (hospitals [h].planners [p].dayOfWeek == dayOfWeek) {
+							countDayOfWeek++;
+						}
+					}
+
+				}
+				if ((countDayOfWeek < 1) && (countOfWeek < 2)) {
+					availableHospitals.Add (hospitals [h]);
+				} 
+			};
+			return availableHospitals;
+		}
+
+		public static IEnumerable<Hospital> GetChoosenHospitals (int weekNum, DayOfWeek dayOfWeek)
+		{
+			List<Hospital> choosenHospitals = new List<Hospital> ();
+			for (int h = 0; h < hospitals.Count; h++) {
+				for (int p = 0; p < hospitals[h].planners.Count; p++) {
+					if (hospitals [h].planners [p].weekNum   == weekNum &&
+					    hospitals [h].planners [p].dayOfWeek == dayOfWeek) {
+						choosenHospitals.Add (hospitals [h]);
+					}
+				}
+			};
+			return choosenHospitals;
 		}
 
 		/// <summary>

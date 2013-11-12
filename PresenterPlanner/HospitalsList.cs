@@ -78,11 +78,11 @@ namespace PresenterPlanner
 					hospitalDetails.PutExtra ("HospitalID", hospitals[info.Position].ID);
 					StartActivity (hospitalDetails);
 					ContextItemClicked(item.TitleFormatted.ToString()); break;
-			case MENU_ITEM_DELETE:
-				HospitalManager.DeleteHospital (hospitals [info.Position].ID);
-				ContextItemClicked (item.TitleFormatted.ToString ());
-				RefreshList ();
-				break;
+				case MENU_ITEM_DELETE:
+					HospitalManager.DeleteHospital (hospitals [info.Position].ID);
+					ContextItemClicked (item.TitleFormatted.ToString ());
+					RefreshList ();
+					break;
 			}
 			return base.OnOptionsItemSelected(item);
 		}

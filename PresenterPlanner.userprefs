@@ -1,20 +1,23 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="PresenterPlanner\PresentationsList.cs">
+    <Files>
+      <File FileName="PresenterPlanner\PlannerGrid.cs" Line="1" Column="1" />
+      <File FileName="PresenterPlanner\DoctorsList.cs" Line="56" Column="4" />
+      <File FileName="PresenterPlanner\DoctorDetails.cs" Line="129" Column="47" />
+      <File FileName="PresenterPlanner\Lib\Presentations.cs" Line="35" Column="70" />
+      <File FileName="PresenterPlanner\PresentationsList.cs" Line="10" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="PresenterPlanner" expanded="True">
-            <Node name="Adapters" expanded="True">
-              <Node name="DoctorListAdapter.cs" selected="True" />
-            </Node>
-            <Node name="Lib" expanded="True">
-              <Node name="Doctors" expanded="True" />
-              <Node name="Hospitals" expanded="True" />
-            </Node>
+            <Node name="References" expanded="True" />
+            <Node name="Lib" expanded="True" />
             <Node name="Resources" expanded="True">
               <Node name="layout" expanded="True" />
             </Node>
+            <Node name="PresentationsList.cs" selected="True" />
           </Node>
         </State>
       </Pad>

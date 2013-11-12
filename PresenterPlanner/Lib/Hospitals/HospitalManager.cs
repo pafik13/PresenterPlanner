@@ -24,6 +24,16 @@ namespace PresenterPlanner.Lib.Hospitals
 			return new List<Hospital>(HospitalRepository.GetSelectedHospitals());
 		}
 
+		public static IList<Hospital> GetAvailableHospitals (int weekNum, DayOfWeek dayOfWeek)
+		{
+			return new List<Hospital>(HospitalRepository.GetAvailableHospitals(weekNum, dayOfWeek));
+		}
+
+		public static IList<Hospital> GetChoosenHospitals (int weekNum, DayOfWeek dayOfWeek)
+		{
+			return new List<Hospital>(HospitalRepository.GetChoosenHospitals(weekNum, dayOfWeek));
+		}
+
 		public static int SaveHospital (Hospital item)
 		{
 			return HospitalRepository.SaveHospital(item);

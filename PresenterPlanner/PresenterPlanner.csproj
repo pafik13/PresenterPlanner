@@ -17,7 +17,7 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <AssemblyName>PresenterPlanner</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -76,6 +76,7 @@
     <Compile Include="DoctorsList.cs" />
     <Compile Include="HospitalDetails.cs" />
     <Compile Include="HospitalsList.cs" />
+    <Compile Include="PlannerHospitalsLists.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -106,6 +107,7 @@
     <AndroidResource Include="Resources\layout\HospitalsListItem.axml" />
     <AndroidResource Include="Resources\layout\HospitalsSpinnerItem.axml" />
     <AndroidResource Include="Resources\layout\WorkTimeListItem.axml" />
+    <AndroidResource Include="Resources\layout\PlannerHospitalsLists.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
