@@ -18,7 +18,7 @@
         p1:layout_width="wrap_content"
         p1:layout_height="wrap_content"
         p1:id="@+id/PlannerGrid"
-        p1:numColumns="7"
+        p1:numColumns="5"
         p1:layout_gravity="center"
         p1:gravity="center" />
     <Button

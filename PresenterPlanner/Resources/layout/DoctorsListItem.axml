@@ -5,7 +5,8 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:minWidth="25px"
-    android:minHeight="25px">
+    android:minHeight="25px"
+    android:padding="10dp">
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
@@ -13,10 +14,36 @@
         android:src="@android:drawable/checkbox_off_background"
         android:padding="5dp"
         android:tag="imgCheck" />
-    <CheckedTextView
-        android:text="txtDoctorFullName"
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/txtDoctorFullName"
-        android:layout_marginRight="0.0dp" />
+        android:layout_height="match_parent"
+        android:id="@+id/llDoctor">
+        <TextView
+            android:text="txtDoctorFullName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtDoctorFullName"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/primary_text_dark" />
+        <TextView
+            android:text="txtDocSpeciality"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtDocSpeciality"
+            android:textStyle="italic"
+            android:paddingLeft="10dp"
+            android:textColor="@android:color/secondary_text_dark" />
+        <TextView
+            android:text="txtDocHospital"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtDocHospital"
+            android:textStyle="italic"
+            android:paddingLeft="10dp"
+            android:textColor="@android:color/secondary_text_dark" />
+    </LinearLayout>
 </LinearLayout>

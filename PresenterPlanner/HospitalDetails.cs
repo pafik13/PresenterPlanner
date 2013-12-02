@@ -13,7 +13,7 @@ using PresenterPlanner.Lib.Hospitals;
 
 namespace PresenterPlanner
 {
-	[Activity (Label = "Больница или отделение")]			
+	[Activity (Label = "Больница", Icon = "@drawable/Icon_data")]			
 	public class HospitalDetails : Activity
 	{
 		protected Hospital hospital = new Hospital();

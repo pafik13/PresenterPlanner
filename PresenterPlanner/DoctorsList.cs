@@ -18,7 +18,7 @@ namespace PresenterPlanner
 	public class DoctorsList : Activity
 	{
 		protected Adapters.DoctorListAdapter doctorList;
-		protected IList<Doctor> doctors;
+		protected List<Doctor> doctors;
 		protected ListView lstDoctors = null;
 		protected Button btnAdd = null;
 		protected Button btnChoice = null;
@@ -88,11 +88,11 @@ namespace PresenterPlanner
 					var doctorDetails = new Intent (this, typeof (DoctorDetailsActivity));
 					doctorDetails.PutExtra ("DoctorID", doctors[info.Position].ID);
 					StartActivity (doctorDetails);
-					ContextItemClicked(item.TitleFormatted.ToString()); 
+//					ContextItemClicked(item.TitleFormatted.ToString()); 
 					break;
 				case MENU_ITEM_DELETE:
 					DoctorManager.DeleteDoctor (doctors [info.Position].ID);
-					ContextItemClicked (item.TitleFormatted.ToString ());
+//					ContextItemClicked (item.TitleFormatted.ToString ());
 					RefreshList ();
 					break;
 			}
@@ -110,8 +110,8 @@ namespace PresenterPlanner
 		public void RefreshList()
 		{
 
-			doctors = DoctorManager.GetDoctors();
-
+			doctors = (List<Doctor>)DoctorManager.GetDoctors();
+			doctors.Sort (DoctorManager.DoctorCompare);
 			// create our adapter
 			doctorList = new DoctorListAdapter(this, doctors);
 

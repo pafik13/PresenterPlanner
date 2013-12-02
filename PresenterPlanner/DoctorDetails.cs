@@ -16,7 +16,7 @@ using PresenterPlanner.Adapters;
 
 namespace PresenterPlanner
 {
-	[Activity (Label = "DoctorDetailsActivity")]			
+	[Activity (Label = "Врач", Icon = "@drawable/Icon_data")]			
 	public class DoctorDetailsActivity : Activity
 	{
 		protected Doctor doctor = new Doctor();
@@ -26,7 +26,7 @@ namespace PresenterPlanner
 		protected EditText TelTextEdit = null;
 		protected EditText EmailTextEdit = null;
 		protected AutoCompleteTextView SpecTextEdit = null;
-		protected EditText PosTextEdit = null;
+		protected AutoCompleteTextView PosTextEdit = null;
 		protected Button cancelDeleteButton = null;
 		protected Button saveButton = null;
 		ProgressDialog progress;
@@ -60,9 +60,9 @@ namespace PresenterPlanner
 			ArrayAdapter SpecTextEditAdapter = new ArrayAdapter (this, Android.Resource.Layout.SimpleDropDownItem1Line, DoctorSpecialitys.GetSpecialitys());
 			SpecTextEdit.Adapter = SpecTextEditAdapter;
 
-			PosTextEdit   = FindViewById<EditText> (Resource.Id.txtPosition);
+			PosTextEdit   = FindViewById<AutoCompleteTextView> (Resource.Id.txtPosition);
 			ArrayAdapter PosTextEditAdapter = new ArrayAdapter (this, Android.Resource.Layout.SimpleDropDownItem1Line,DoctorPositions.GetPositions() );
-			SpecTextEdit.Adapter = PosTextEditAdapter;
+			PosTextEdit.Adapter = PosTextEditAdapter;
 
 			saveButton = FindViewById<Button> (Resource.Id.btnSave);
 			cancelDeleteButton = FindViewById<Button>(Resource.Id.btnCancelDelete);
@@ -221,9 +221,10 @@ namespace PresenterPlanner
 				workTimeItems.Add(new Tuple<String, DateTime, WorkTime_Type, DateTime, WorkTime_Type>("Понедельник", doctor.wtDays.Mon_From, WorkTime_Type.Mon_From, doctor.wtDays.Mon_Till, WorkTime_Type.Mon_Till));
 				workTimeItems.Add(new Tuple<String, DateTime, WorkTime_Type, DateTime, WorkTime_Type>("Вторник    ", doctor.wtDays.Tue_From, WorkTime_Type.Tue_From, doctor.wtDays.Tue_Till, WorkTime_Type.Tue_Till));
 				workTimeItems.Add(new Tuple<String, DateTime, WorkTime_Type, DateTime, WorkTime_Type>("Среда      ", doctor.wtDays.Wed_From, WorkTime_Type.Wed_From, doctor.wtDays.Wed_Till, WorkTime_Type.Wed_Till));
+				workTimeItems.Add(new Tuple<String, DateTime, WorkTime_Type, DateTime, WorkTime_Type>("Четверг    ", doctor.wtDays.Thu_From, WorkTime_Type.Thu_From, doctor.wtDays.Thu_Till, WorkTime_Type.Thu_Till));
 				workTimeItems.Add(new Tuple<String, DateTime, WorkTime_Type, DateTime, WorkTime_Type>("Пятница    ", doctor.wtDays.Fri_From, WorkTime_Type.Fri_From, doctor.wtDays.Fri_Till, WorkTime_Type.Fri_Till));
-				workTimeItems.Add(new Tuple<String, DateTime, WorkTime_Type, DateTime, WorkTime_Type>("Суббота    ", doctor.wtDays.Sut_From, WorkTime_Type.Sut_From, doctor.wtDays.Sut_Till, WorkTime_Type.Sut_Till));
-				workTimeItems.Add(new Tuple<String, DateTime, WorkTime_Type, DateTime, WorkTime_Type>("Воскресенье", doctor.wtDays.Sun_From, WorkTime_Type.Sun_From, doctor.wtDays.Sun_Till, WorkTime_Type.Sun_Till));
+//				workTimeItems.Add(new Tuple<String, DateTime, WorkTime_Type, DateTime, WorkTime_Type>("Суббота    ", doctor.wtDays.Sut_From, WorkTime_Type.Sut_From, doctor.wtDays.Sut_Till, WorkTime_Type.Sut_Till));
+//				workTimeItems.Add(new Tuple<String, DateTime, WorkTime_Type, DateTime, WorkTime_Type>("Воскресенье", doctor.wtDays.Sun_From, WorkTime_Type.Sun_From, doctor.wtDays.Sun_Till, WorkTime_Type.Sun_Till));
 			}
 			else
 			{

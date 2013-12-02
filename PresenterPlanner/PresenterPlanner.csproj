@@ -108,6 +108,13 @@
     <AndroidResource Include="Resources\layout\HospitalsSpinnerItem.axml" />
     <AndroidResource Include="Resources\layout\WorkTimeListItem.axml" />
     <AndroidResource Include="Resources\layout\PlannerHospitalsLists.axml" />
+    <AndroidResource Include="Resources\drawable\cal_item_big.png" />
+    <AndroidResource Include="Resources\drawable\Icon_planner.png" />
+    <AndroidResource Include="Resources\drawable\cal_item_big_v4.png" />
+    <AndroidResource Include="Resources\drawable\cal_item_big_v5.png" />
+    <AndroidResource Include="Resources\drawable\Icon_presents.png" />
+    <AndroidResource Include="Resources\drawable\Icon_planner_72.png" />
+    <AndroidResource Include="Resources\drawable\Icon_data.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

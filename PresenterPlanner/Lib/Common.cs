@@ -59,7 +59,7 @@ namespace PresenterPlanner.Lib
 
 		public static string DatabaseFilePath {
 			get { 	
-				return Path.Combine (Common.DatabaseFileDir(), "Seetings.xml");		
+				return Path.Combine (Common.DatabaseFileDir(), "Settings.xml");		
 			}
 		}
 

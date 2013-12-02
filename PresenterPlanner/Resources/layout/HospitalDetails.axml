@@ -32,7 +32,7 @@
         android:layout_below="@+id/HospitalAdressLabel"
         android:maxLines="1"
         android:imeOptions="actionDone"
-        android:inputType="textCapWords" />
+        android:inputType="text" />
     <Button
         android:id="@+id/btnCancelDelete"
         android:text="Удалить"

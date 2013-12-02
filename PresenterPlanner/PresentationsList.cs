@@ -12,7 +12,7 @@ using PresenterPlanner.Lib;
 
 namespace PresenterPlanner
 {
-	[Activity (Label = "PresentationsList")]			
+	[Activity (Label = "Презентации", Icon = "@drawable/Icon_presents")]			
 	public class PresentationsList : ListActivity
 	{
 		List <Presentation> preses;
@@ -37,7 +37,7 @@ namespace PresenterPlanner
 		protected override void OnListItemClick(Android.Widget.ListView l, Android.Views.View v, int position, long id)
 		{
 			var t = items[position];
-			Android.Widget.Toast.MakeText(this, t.Item1, Android.Widget.ToastLength.Short).Show();
+//			Android.Widget.Toast.MakeText(this, t.Item1, Android.Widget.ToastLength.Short).Show();
 			Console.WriteLine("Clicked on " + t);
 			var slides = new Intent ( this, typeof(PresentationView));
 			int presentationID = 0;

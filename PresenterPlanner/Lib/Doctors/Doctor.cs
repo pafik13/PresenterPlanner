@@ -28,6 +28,10 @@ namespace PresenterPlanner.Lib.Doctors
 		public WorkTime_Days wtDays { get; set; }
 		public WorkTime_OddEven	wtOddEven { get; set; }
 		public WorkTime_Type chooseNwtType { get; set; } //необходимо в форме редактирования. КРИВО!!!!!
+
+		public string FIO () {
+			return SecondName + ' ' + FirstName + ' ' + ThirdName;
+		}
 	}
 
 	public struct WorkTime_OddEven

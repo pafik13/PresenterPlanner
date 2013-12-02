@@ -49,7 +49,7 @@ namespace PresenterPlanner.Lib.Doctors
 
 		public static Doctor GetDoctor(int id)
 		{
-			for (var t = 0; t< doctors.Count; t++) {
+			for (var t = 0; t < doctors.Count; t++) {
 				if (doctors[t].ID == id)
 					return doctors[t];
 			}
@@ -65,10 +65,10 @@ namespace PresenterPlanner.Lib.Doctors
 			vwtDays.Thu_Till = new DateTime(1,1,1,18,0,0);
 			vwtDays.Fri_From = new DateTime(1,1,1,9,0,0);
 			vwtDays.Fri_Till = new DateTime(1,1,1,18,0,0);
-			vwtDays.Sut_From = new DateTime(1,1,1,9,0,0);
-			vwtDays.Sut_Till = new DateTime(1,1,1,18,0,0);
-			vwtDays.Sun_From = new DateTime(1,1,1,9,0,0);
-			vwtDays.Sun_Till = new DateTime(1,1,1,18,0,0);
+//			vwtDays.Sut_From = new DateTime(1,1,1,9,0,0);
+//			vwtDays.Sut_Till = new DateTime(1,1,1,18,0,0);
+//			vwtDays.Sun_From = new DateTime(1,1,1,9,0,0);
+//			vwtDays.Sun_Till = new DateTime(1,1,1,18,0,0);
 
 			var vwtOddEven = new WorkTime_OddEven ();
 			vwtOddEven.Odd_From = new DateTime(1,1,1,9,0,0);
@@ -82,6 +82,17 @@ namespace PresenterPlanner.Lib.Doctors
 		public static IEnumerable<Doctor> GetDoctors ()
 		{
 			return doctors;
+		}
+
+		public static IEnumerable<Doctor> GetDoctors (int hospitalID)
+		{
+			List<Doctor> newDoctorList = new List<Doctor> ();
+			for (var t = 0; t< doctors.Count; t++) {
+				if (doctors [t].HospitalID == hospitalID) {
+					newDoctorList.Add(doctors [t]);
+				};
+			};
+			return newDoctorList;
 		}
 
 		public static IEnumerable<Doctor> GetSelectedDoctors ()

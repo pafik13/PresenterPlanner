@@ -5,18 +5,45 @@
     android:layout_height="fill_parent"
     android:minWidth="25px"
     android:minHeight="25px">
-    <ListView
+    <LinearLayout
+        android:orientation="vertical"
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_weight="1"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/lstChoosenHosp" />
-    <ListView
+        android:layout_height="fill_parent">
+        <TextView
+            android:text="Запланированные поликлиники"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtChoosenHosp"
+            android:gravity="center" />
+        <ListView
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/lstChoosenHosp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_weight="1"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/lstAvailableHosp" />
+        android:layout_height="fill_parent">
+        <TextView
+            android:text="Доступные поликлиники"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtAvailableHosp"
+            android:gravity="center" />
+        <ListView
+            android:minWidth="25px"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/lstAvailableHosp" />
+    </LinearLayout>
 </LinearLayout>

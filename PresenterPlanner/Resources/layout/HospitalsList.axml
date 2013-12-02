@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <Button
-        android:text="Добавить больницу или отделение"
+        android:text="Добавить больницу"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnAddHospital" />

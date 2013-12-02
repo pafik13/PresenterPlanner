@@ -14,7 +14,7 @@ namespace PresenterPlanner.PlannerManager
 	public class PlannerManager
 	{
 		public static DateTime[] GetWeeks(int weekNum, DateTime dayIn1stWeek) {
-			DateTime[] dt = new DateTime[7*weekNum];
+			DateTime[] dt = new DateTime[5*weekNum];
 			int offset;
 			if (dayIn1stWeek.DayOfWeek == DayOfWeek.Sunday) {
 				offset = -6;
@@ -22,9 +22,12 @@ namespace PresenterPlanner.PlannerManager
 				offset = 1 - (int)dayIn1stWeek.DayOfWeek;
 			}
 			DateTime startDay = dayIn1stWeek.AddDays (offset);
-
-			for (int i=0; i<=dt.Count() - 1; i++) {
-				dt [i] = startDay.AddDays (i);
+			int j = 0;
+			for (int i=0; i < 7*weekNum; i++) {
+				if ((startDay.AddDays (i).DayOfWeek != DayOfWeek.Saturday) && (startDay.AddDays (i).DayOfWeek != DayOfWeek.Sunday)) {
+					dt [j] = startDay.AddDays (i);
+					j++;
+				}
 			}
 			return dt;
 		}

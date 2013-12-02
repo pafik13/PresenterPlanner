@@ -45,7 +45,7 @@
             p1:layout_weight="1"
             p1:gravity="right|top" />
         <Button
-            p1:text="Ввод врачей и поликлиник"
+            p1:text="Ввод врачей и больниц"
             p1:id="@+id/btnData"
             p1:layout_width="fill_parent"
             p1:layout_height="fill_parent"

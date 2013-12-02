@@ -90,21 +90,21 @@
             android:layout_below="@+id/SpecialityLabel"
             android:maxLines="1"
             android:imeOptions="actionNext"
-            android:inputType="textCapWords" />
+            android:inputType="textCapSentences" />
         <TextView
             android:id="@+id/PositionLabel"
             android:text="Должность:"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/actxtSpeciality" />
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/txtPosition"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/PositionLabel"
             android:maxLines="1"
             android:imeOptions="actionDone"
-            android:inputType="textCapWords" />
+            android:inputType="textCapSentences" />
         <Spinner
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

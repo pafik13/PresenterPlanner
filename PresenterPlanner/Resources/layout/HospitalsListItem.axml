@@ -25,11 +25,17 @@
             android:text="txtHospitalName"
             android:id="@+id/txtHospitalName"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/primary_text_dark" />
         <TextView
             android:text="txtHospitalAdress"
             android:id="@+id/txtHospitalAdress"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:paddingLeft="10dp"
+            android:textColor="@android:color/secondary_text_dark" />
     </LinearLayout>
 </LinearLayout>

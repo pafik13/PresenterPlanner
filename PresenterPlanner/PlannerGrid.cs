@@ -16,7 +16,8 @@ using Android.Telephony;
 
 namespace PresenterPlanner
 {
-	[Activity (Label = "PlannerGrid")]			
+
+	[Activity (Label = "Планировщик показов", Icon = "@drawable/Icon_planner")]			
 	public class PlannerGrid : Activity
 	{
 		protected GridView plannerGrid;
@@ -33,7 +34,7 @@ namespace PresenterPlanner
 			Calendar cal = dfi.Calendar;
 			int weekDiv = sett.weekOfStart - cal.GetWeekOfYear(DateTime.Today, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
 
-			dayInWeek = DateTime.Today.AddDays (weekDiv * 7);
+			dayInWeek = DateTime.Today.AddDays (weekDiv%3 * 7);
 
 			SetContentView(Resource.Layout.PlannerGrid);
 
@@ -43,8 +44,13 @@ namespace PresenterPlanner
 				//Toast.MakeText(this, args.Position.ToString(), ToastLength.Short).Show();
 				var plannerHospList = new Intent (this, typeof (PlannerHospitalsLists));
 //				int weekNum = e.Position/7;
-				plannerHospList.PutExtra ("WeekNum", e.Position/7);
-				plannerHospList.PutExtra ("DayOfWeek", (e.Position+1)%7);
+				plannerHospList.PutExtra ("WeekNum", e.Position/5);
+				if ((e.Position + 1)%5 == 0) {
+					plannerHospList.PutExtra ("DayOfWeek", 5);
+				} else {
+					plannerHospList.PutExtra ("DayOfWeek", (e.Position + 1)%5);
+				}
+
 				StartActivity (plannerHospList);
 			};
 
@@ -124,13 +130,15 @@ namespace PresenterPlanner
 					Common.SetSettings (setts);
 				}
 
-				(view.FindViewById<TextView>(Resource.Id.txtDate)).Text = "Date: " + dt [position].ToString("d") +"\n" + 
-					dt [position].DayOfWeek.ToString() + " = " +((int)dt [position].DayOfWeek).ToString() + "\n" +
-						                                                   "Week = " + week.ToString();//.ToString (); // ("yy-MM-dd");
+				(view.FindViewById<TextView> (Resource.Id.txtDate)).Text = dt [position].ToString ("dd MMMMM") + "\n" + 
+				                                                           DateTimeFormatInfo.CurrentInfo.DayNames [(int)dt [position].DayOfWeek];
+//					"Date: " + dt [position].ToString("d") +"\n" + 
+//					dt [position].DayOfWeek.ToString() + " = " +((int)dt [position].DayOfWeek).ToString() + "\n" +
+//						                                                   "Week = " + week.ToString();//.ToString (); // ("yy-MM-dd");
 //				view.SetPadding (8, 20, 8, 20);
 				var txtHosps = view.FindViewById<TextView> (Resource.Id.txtHosps);
 				txtHosps.Text = "";
-				var chHosps = HospitalManager.GetChoosenHospitals(position/7, dt [position].DayOfWeek);
+				var chHosps = HospitalManager.GetChoosenHospitals(position/5, dt [position].DayOfWeek);
 				for (int h = 0; h < chHosps.Count; h++) {
 					txtHosps.Text = txtHosps.Text + chHosps [h].Name + "\n";
 				}

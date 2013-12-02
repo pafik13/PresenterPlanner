@@ -11,7 +11,7 @@ using Android.Widget;
 
 namespace PresenterPlanner
 {
-	[Activity (Label = "DoctorsAndHospitals")]			
+	[Activity (Label = "Врачи и больницы", Icon = "@drawable/Icon_data")]			
 	public class DoctorsAndHospitals : TabActivity
 	{
 		protected override void OnCreate (Bundle bundle)

@@ -45,25 +45,46 @@ namespace PresenterPlanner
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int ic_tab_doctors = 2130837504;
+			public const int cal_item_big = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int ic_tab_doctors_selected = 2130837505;
+			public const int cal_item_big_v4 = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int ic_tab_doctors_unselected = 2130837506;
+			public const int cal_item_big_v5 = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int ic_tab_hospitals = 2130837507;
+			public const int ic_tab_doctors = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int ic_tab_hospitals_selected = 2130837508;
+			public const int ic_tab_doctors_selected = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int ic_tab_hospitals_unselected = 2130837509;
+			public const int ic_tab_doctors_unselected = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int Icon = 2130837510;
+			public const int ic_tab_hospitals = 2130837510;
+			
+			// aapt resource value: 0x7f020007
+			public const int ic_tab_hospitals_selected = 2130837511;
+			
+			// aapt resource value: 0x7f020008
+			public const int ic_tab_hospitals_unselected = 2130837512;
+			
+			// aapt resource value: 0x7f020009
+			public const int Icon = 2130837513;
+			
+			// aapt resource value: 0x7f02000a
+			public const int Icon_data = 2130837514;
+			
+			// aapt resource value: 0x7f02000b
+			public const int Icon_planner = 2130837515;
+			
+			// aapt resource value: 0x7f02000c
+			public const int Icon_planner_72 = 2130837516;
+			
+			// aapt resource value: 0x7f02000d
+			public const int Icon_presents = 2130837517;
 			
 			static Drawable()
 			{
@@ -84,14 +105,14 @@ namespace PresenterPlanner
 			// aapt resource value: 0x7f050003
 			public const int FirstNameLabel = 2131034115;
 			
-			// aapt resource value: 0x7f050020
-			public const int HospitalAdressLabel = 2131034144;
+			// aapt resource value: 0x7f050023
+			public const int HospitalAdressLabel = 2131034147;
 			
-			// aapt resource value: 0x7f05001e
-			public const int HospitllNameLabel = 2131034142;
+			// aapt resource value: 0x7f050021
+			public const int HospitllNameLabel = 2131034145;
 			
-			// aapt resource value: 0x7f050032
-			public const int PlannerGrid = 2131034162;
+			// aapt resource value: 0x7f050035
+			public const int PlannerGrid = 2131034165;
 			
 			// aapt resource value: 0x7f05000e
 			public const int PositionLabel = 2131034126;
@@ -114,8 +135,8 @@ namespace PresenterPlanner
 			// aapt resource value: 0x7f050018
 			public const int btnAdd = 2131034136;
 			
-			// aapt resource value: 0x7f050022
-			public const int btnAddHospital = 2131034146;
+			// aapt resource value: 0x7f050025
+			public const int btnAddHospital = 2131034149;
 			
 			// aapt resource value: 0x7f050015
 			public const int btnCancelDelete = 2131034133;
@@ -123,35 +144,35 @@ namespace PresenterPlanner
 			// aapt resource value: 0x7f050019
 			public const int btnChoice = 2131034137;
 			
+			// aapt resource value: 0x7f050032
+			public const int btnData = 2131034162;
+			
+			// aapt resource value: 0x7f050045
+			public const int btnNextSlide = 2131034181;
+			
+			// aapt resource value: 0x7f050036
+			public const int btnNextWeek = 2131034166;
+			
 			// aapt resource value: 0x7f05002f
-			public const int btnData = 2131034159;
+			public const int btnPlanning = 2131034159;
 			
-			// aapt resource value: 0x7f050040
-			public const int btnNextSlide = 2131034176;
-			
-			// aapt resource value: 0x7f050033
-			public const int btnNextWeek = 2131034163;
-			
-			// aapt resource value: 0x7f05002c
-			public const int btnPlanning = 2131034156;
-			
-			// aapt resource value: 0x7f050031
-			public const int btnPrevWeek = 2131034161;
+			// aapt resource value: 0x7f050034
+			public const int btnPrevWeek = 2131034164;
 			
 			// aapt resource value: 0x7f050016
 			public const int btnSave = 2131034134;
 			
-			// aapt resource value: 0x7f05002b
-			public const int btnSlides = 2131034155;
-			
 			// aapt resource value: 0x7f05002e
-			public const int btnSync = 2131034158;
+			public const int btnSlides = 2131034158;
 			
-			// aapt resource value: 0x7f050043
-			public const int btnWorkTimeFromValue = 2131034179;
+			// aapt resource value: 0x7f050031
+			public const int btnSync = 2131034161;
 			
-			// aapt resource value: 0x7f050044
-			public const int btnWorkTimeTillValue = 2131034180;
+			// aapt resource value: 0x7f050048
+			public const int btnWorkTimeFromValue = 2131034184;
+			
+			// aapt resource value: 0x7f050049
+			public const int btnWorkTimeTillValue = 2131034185;
 			
 			// aapt resource value: 0x7f050012
 			public const int chIsDays = 2131034130;
@@ -159,53 +180,56 @@ namespace PresenterPlanner
 			// aapt resource value: 0x7f05001c
 			public const int imgDoctorCheck = 2131034140;
 			
-			// aapt resource value: 0x7f050025
-			public const int imgHospitalCheck = 2131034149;
+			// aapt resource value: 0x7f050028
+			public const int imgHospitalCheck = 2131034152;
 			
-			// aapt resource value: 0x7f05003d
-			public const int ivSlide = 2131034173;
+			// aapt resource value: 0x7f050042
+			public const int ivSlide = 2131034178;
 			
 			// aapt resource value: 0x7f05001b
 			public const int layoutDoctorItem = 2131034139;
 			
-			// aapt resource value: 0x7f050024
-			public const int layoutHospitalItem = 2131034148;
+			// aapt resource value: 0x7f050027
+			public const int layoutHospitalItem = 2131034151;
 			
 			// aapt resource value: 0x7f050017
 			public const int linearLayout1 = 2131034135;
 			
-			// aapt resource value: 0x7f05003e
-			public const int llBottom = 2131034174;
-			
-			// aapt resource value: 0x7f050037
-			public const int llChoosenHosps = 2131034167;
-			
-			// aapt resource value: 0x7f050035
-			public const int llDateInfo = 2131034165;
-			
-			// aapt resource value: 0x7f05002a
-			public const int llFirstRow = 2131034154;
-			
-			// aapt resource value: 0x7f050030
-			public const int llPlanner = 2131034160;
-			
-			// aapt resource value: 0x7f050034
-			public const int llPlannerItem = 2131034164;
-			
-			// aapt resource value: 0x7f05002d
-			public const int llSecondRow = 2131034157;
-			
-			// aapt resource value: 0x7f05003b
-			public const int llTop = 2131034171;
-			
-			// aapt resource value: 0x7f050029
-			public const int llvMainMenu = 2131034153;
+			// aapt resource value: 0x7f050043
+			public const int llBottom = 2131034179;
 			
 			// aapt resource value: 0x7f05003a
-			public const int lstAvailableHosp = 2131034170;
+			public const int llChoosenHosps = 2131034170;
 			
-			// aapt resource value: 0x7f050039
-			public const int lstChoosenHosp = 2131034169;
+			// aapt resource value: 0x7f050038
+			public const int llDateInfo = 2131034168;
+			
+			// aapt resource value: 0x7f05001d
+			public const int llDoctor = 2131034141;
+			
+			// aapt resource value: 0x7f05002d
+			public const int llFirstRow = 2131034157;
+			
+			// aapt resource value: 0x7f050033
+			public const int llPlanner = 2131034163;
+			
+			// aapt resource value: 0x7f050037
+			public const int llPlannerItem = 2131034167;
+			
+			// aapt resource value: 0x7f050030
+			public const int llSecondRow = 2131034160;
+			
+			// aapt resource value: 0x7f050040
+			public const int llTop = 2131034176;
+			
+			// aapt resource value: 0x7f05002c
+			public const int llvMainMenu = 2131034156;
+			
+			// aapt resource value: 0x7f05003f
+			public const int lstAvailableHosp = 2131034175;
+			
+			// aapt resource value: 0x7f05003d
+			public const int lstChoosenHosp = 2131034173;
 			
 			// aapt resource value: 0x7f050013
 			public const int lstDD = 2131034131;
@@ -213,17 +237,17 @@ namespace PresenterPlanner
 			// aapt resource value: 0x7f05001a
 			public const int lstDoctors = 2131034138;
 			
-			// aapt resource value: 0x7f050023
-			public const int lstHospitals = 2131034147;
+			// aapt resource value: 0x7f050026
+			public const int lstHospitals = 2131034150;
 			
-			// aapt resource value: 0x7f050041
-			public const int lstWTItem = 2131034177;
+			// aapt resource value: 0x7f050046
+			public const int lstWTItem = 2131034182;
 			
 			// aapt resource value: 0x7f050014
 			public const int lstWorkTime = 2131034132;
 			
-			// aapt resource value: 0x7f050026
-			public const int rLayout = 2131034150;
+			// aapt resource value: 0x7f050029
+			public const int rLayout = 2131034153;
 			
 			// aapt resource value: 0x7f050000
 			public const int scroll = 2131034112;
@@ -231,17 +255,29 @@ namespace PresenterPlanner
 			// aapt resource value: 0x7f050010
 			public const int spnHospital = 2131034128;
 			
-			// aapt resource value: 0x7f05003f
-			public const int tvSlideName = 2131034175;
+			// aapt resource value: 0x7f050044
+			public const int tvSlideName = 2131034180;
 			
-			// aapt resource value: 0x7f050036
-			public const int txtDate = 2131034166;
+			// aapt resource value: 0x7f05003e
+			public const int txtAvailableHosp = 2131034174;
 			
-			// aapt resource value: 0x7f050042
-			public const int txtDayOrOddEven = 2131034178;
+			// aapt resource value: 0x7f05003c
+			public const int txtChoosenHosp = 2131034172;
 			
-			// aapt resource value: 0x7f05001d
-			public const int txtDoctorFullName = 2131034141;
+			// aapt resource value: 0x7f050039
+			public const int txtDate = 2131034169;
+			
+			// aapt resource value: 0x7f050047
+			public const int txtDayOrOddEven = 2131034183;
+			
+			// aapt resource value: 0x7f050020
+			public const int txtDocHospital = 2131034144;
+			
+			// aapt resource value: 0x7f05001f
+			public const int txtDocSpeciality = 2131034143;
+			
+			// aapt resource value: 0x7f05001e
+			public const int txtDoctorFullName = 2131034142;
 			
 			// aapt resource value: 0x7f05000b
 			public const int txtEmail = 2131034123;
@@ -249,14 +285,14 @@ namespace PresenterPlanner
 			// aapt resource value: 0x7f050004
 			public const int txtFirstName = 2131034116;
 			
-			// aapt resource value: 0x7f050021
-			public const int txtHospitalAdress = 2131034145;
+			// aapt resource value: 0x7f050024
+			public const int txtHospitalAdress = 2131034148;
 			
-			// aapt resource value: 0x7f05001f
-			public const int txtHospitalName = 2131034143;
+			// aapt resource value: 0x7f050022
+			public const int txtHospitalName = 2131034146;
 			
-			// aapt resource value: 0x7f050038
-			public const int txtHosps = 2131034168;
+			// aapt resource value: 0x7f05003b
+			public const int txtHosps = 2131034171;
 			
 			// aapt resource value: 0x7f05000f
 			public const int txtPosition = 2131034127;
@@ -264,11 +300,11 @@ namespace PresenterPlanner
 			// aapt resource value: 0x7f050002
 			public const int txtSecondName = 2131034114;
 			
-			// aapt resource value: 0x7f050028
-			public const int txtSpnrItemHAdress = 2131034152;
+			// aapt resource value: 0x7f05002b
+			public const int txtSpnrItemHAdress = 2131034155;
 			
-			// aapt resource value: 0x7f050027
-			public const int txtSpnrItemHName = 2131034151;
+			// aapt resource value: 0x7f05002a
+			public const int txtSpnrItemHName = 2131034154;
 			
 			// aapt resource value: 0x7f050008
 			public const int txtTel = 2131034120;
@@ -279,8 +315,8 @@ namespace PresenterPlanner
 			// aapt resource value: 0x7f050006
 			public const int txtThirdName = 2131034118;
 			
-			// aapt resource value: 0x7f05003c
-			public const int txtView = 2131034172;
+			// aapt resource value: 0x7f050041
+			public const int txtView = 2131034177;
 			
 			// aapt resource value: 0x7f050011
 			public const int txtWorkTime = 2131034129;

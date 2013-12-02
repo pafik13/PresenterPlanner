@@ -30,10 +30,15 @@ namespace PresenterPlanner
 
 		protected override void OnCreate (Bundle bundle)
 		{
+			RequestWindowFeature(WindowFeatures.NoTitle);
+
 			base.OnCreate (bundle);
 
 			// Create your application here
 			SetContentView (Resource.Layout.PresentationView);
+
+			(FindViewById<TextView> (Resource.Id.txtView)).Visibility = ViewStates.Gone;
+
 			gestureDetector = new GestureDetector (this);
 			_locMgr = GetSystemService (Context.LocationService) as LocationManager;
 
@@ -102,7 +107,7 @@ namespace PresenterPlanner
 			if (preses [selectedPresent].parts [selectedPart].slides.Count - 1 < selectedSlide + 1) {
 				if (preses [selectedPresent].parts.Count - 1 < selectedPart + 1) {
 					if (preses.Count - 1 < selectedPresent + 1) {
-						Android.Widget.Toast.MakeText (this, "КОНЕЦ!", Android.Widget.ToastLength.Short).Show ();
+//						Android.Widget.Toast.MakeText (this, "КОНЕЦ!", Android.Widget.ToastLength.Short).Show ();
 						selectedSlide = preses [selectedPresent].parts [selectedPart].slides.Count;
 						ShowConent();
 					} else {
@@ -124,7 +129,7 @@ namespace PresenterPlanner
 			if (selectedSlide - 1 < 0) {
 				if (selectedPart - 1 < 0) {
 					if (selectedPresent - 1 < 0) {
-						Android.Widget.Toast.MakeText (this, "НАЧАЛО!", Android.Widget.ToastLength.Short).Show ();
+//						Android.Widget.Toast.MakeText (this, "НАЧАЛО!", Android.Widget.ToastLength.Short).Show ();
 					} else {
 						OnButtonTopClick(preses [selectedPresent - 1].btn, null);
 						OnButtonBottomClick(preses [selectedPresent].parts [preses [selectedPresent].parts.Count - 1].btn, null);

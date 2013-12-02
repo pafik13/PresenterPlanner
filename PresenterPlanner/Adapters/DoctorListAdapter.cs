@@ -9,6 +9,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using PresenterPlanner.Lib.Doctors;
+using PresenterPlanner.Lib.Hospitals;
 using PresenterPlanner.Lib;
 
 namespace PresenterPlanner.Adapters
@@ -41,7 +42,8 @@ namespace PresenterPlanner.Adapters
 		public override Android.Views.View GetView (int position, Android.Views.View convertView, Android.Views.ViewGroup parent)
 		{
 			// Get our object for position
-			var item = doctors[position];			
+			var item = doctors[position];
+			var hosp = HospitalManager.GetHospital (item.HospitalID);			
 
 			//Try to reuse convertView if it's not  null, otherwise inflate it from our item layout
 			// gives us some performance gains by not always inflating a new view
@@ -53,11 +55,14 @@ namespace PresenterPlanner.Adapters
 				false)) as LinearLayout;
 			// Find references to each subview in the list item's view
 			var txtDoctorFullName = view.FindViewById<TextView> (Resource.Id.txtDoctorFullName);
+			var txtDocSpeciality = view.FindViewById<TextView> (Resource.Id.txtDocSpeciality);
+			var txtDocHospital = view.FindViewById<TextView> (Resource.Id.txtDocHospital);
 
 			Common.SetCheck (view, item);
 
-			txtDoctorFullName.SetText (item.SecondName+' '+item.FirstName+' '+item.ThirdName, CheckBox.BufferType.Normal);
-
+			txtDoctorFullName.Text = item.SecondName + ' ' + item.FirstName + ' ' + item.ThirdName;
+			txtDocSpeciality.Text = item.Speciality;
+			txtDocHospital.Text = hosp.Name;
 			//Finally return the view
 			return view;
 		}

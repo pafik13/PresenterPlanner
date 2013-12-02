@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minWidth="50px"
-    android:minHeight="150px"
+    android:minHeight="190px"
     android:id="@+id/llPlannerItem"
-    android:background="@android:drawable/editbox_background">
+    android:background="@drawable/cal_item_big_v5">
     <LinearLayout
         android:orientation="vertical"
         android:minWidth="25px"
@@ -14,14 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/llDateInfo"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:gravity="top">
         <TextView
             android:text="Text"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtDate"
-            android:gravity="left"
-            android:textColor="@android:color/background_dark" />
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:textSize="18dp"
+            android:paddingTop="5dp" />
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
@@ -38,6 +41,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/txtHosps"
             android:textColor="@android:color/background_dark"
-            android:gravity="right" />
+            android:gravity="right"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp" />
     </LinearLayout>
 </LinearLayout>

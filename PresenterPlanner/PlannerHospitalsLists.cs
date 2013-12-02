@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,8 +38,10 @@ namespace PresenterPlanner
 			weekNum   = Intent.GetIntExtra("WeekNum", 0);
 			dayOfWeek = Intent.GetIntExtra("DayOfWeek", 0);
 
-			Toast.MakeText (this, String.Format ("WeekNum = {0}", weekNum), ToastLength.Short).Show ();
-			Toast.MakeText (this, String.Format ("DayOfWeek = {0}", dayOfWeek), ToastLength.Short).Show ();
+//			Toast.MakeText (this, String.Format ("WeekNum = {0}", weekNum), ToastLength.Short).Show ();
+//			Toast.MakeText (this, String.Format ("DayOfWeek = {0}", dayOfWeek), ToastLength.Short).Show ();
+
+			this.Title = (weekNum + 1).ToString() + " неделя, " + DateTimeFormatInfo.CurrentInfo.DayNames [dayOfWeek];
 
 			lstChoosenHosp = FindViewById<ListView> (Resource.Id.lstChoosenHosp);
 			if(lstChoosenHosp != null) {

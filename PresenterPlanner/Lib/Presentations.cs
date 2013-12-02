@@ -73,7 +73,9 @@ namespace PresenterPlanner.Lib
 
 			set
 			{
-				Image = BitmapFactory.DecodeStream(new System.IO.MemoryStream(value)) ;
+				BitmapFactory.Options options=new BitmapFactory.Options();
+				options.InSampleSize = 1;
+				Image = BitmapFactory.DecodeStream(new System.IO.MemoryStream(value), null, options) ;
 			}
 		}
 	}
