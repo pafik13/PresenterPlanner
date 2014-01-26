@@ -73,7 +73,7 @@ namespace PresenterPlanner.Lib.Report
 		}
 
 		public static int GetMinWeekNum () {
-			int minWeekNum = 53; //#hack
+			int minWeekNum = 52; //#hack
 			foreach (var report in reports) {
 				foreach (var ri in report.rItems) {
 					if (ri.weekNum < minWeekNum) { minWeekNum = ri.weekNum; }

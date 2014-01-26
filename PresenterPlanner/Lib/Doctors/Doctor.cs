@@ -8,6 +8,7 @@ namespace PresenterPlanner.Lib.Doctors
 	{
 		public Doctor ()
 		{
+			HospitalID = -1;
 		}
 
 		//[PrimaryKey, AutoIncrement]

@@ -20,7 +20,7 @@ using PresenterPlanner.Lib.Report;
 
 namespace PresenterPlanner
 {
-	[Activity (Label = "SyncView")]			
+	[Activity (Label = "Обновления и синхронизация")]			
 	public class SyncView : Activity
 	{
 		protected Setts settings;
@@ -81,12 +81,13 @@ namespace PresenterPlanner
 			pB.Visibility = ViewStates.Gone;
 
 			txtVersion = FindViewById <TextView> (Resource.Id.txtVersion);
-			txtVersion.Text = "Текущая версия: " + PackageManager.GetPackageInfo (PackageName, PackageInfoFlags.Activities).VersionName; 
+			txtVersion.Text = "Текущая версия программы: " + PackageManager.GetPackageInfo (PackageName, PackageInfoFlags.Activities).VersionName; 
 
 			btnUpdateApp = FindViewById <Button> (Resource.Id.btnUpdateApp);
 			btnUpdateApp.Visibility = ViewStates.Gone;
 
 			txtProgress = FindViewById <TextView> (Resource.Id.txtProgress);
+			txtProgress.Text = "Идет сверка информации с сервером...";
 			btnUploadFiles = FindViewById <Button> (Resource.Id.btnUploadFiles);
 			btnUploadFiles.Visibility = ViewStates.Gone;
 
@@ -97,23 +98,23 @@ namespace PresenterPlanner
 					RunOnUiThread(() => pB.Activated = true);
 					RunOnUiThread(() => pB.Max = 4);
 					RunOnUiThread(() => pB.Progress = 0);
-					RunOnUiThread(() => txtProgress.Text = "Идет синхронизация с сервером.");
+					RunOnUiThread(() => txtProgress.Text = "Идет синхронизация с сервером...");
 					loadResult = UploadFiles.LoadFile("DoctorDB");
 					Console.WriteLine(loadResult);
 					RunOnUiThread(() => pB.Progress = 1);
-					RunOnUiThread(() => txtProgress.Text = loadResult);
+					//RunOnUiThread(() => txtProgress.Text = loadResult);
 					Thread.Sleep(1000);
-					RunOnUiThread(() => txtProgress.Text = "load HospitalDB");
+					//RunOnUiThread(() => txtProgress.Text = "load HospitalDB");
 					loadResult = UploadFiles.LoadFile("HospitalDB");
 					Console.WriteLine(loadResult);
 					RunOnUiThread(() => pB.Progress = 2);
-					RunOnUiThread(() => txtProgress.Text = loadResult);
+					//RunOnUiThread(() => txtProgress.Text = loadResult);
 					Thread.Sleep(1000);
-					RunOnUiThread(() => txtProgress.Text = "load Demonstration");
+					//RunOnUiThread(() => txtProgress.Text = "load Demonstration");
 					loadResult = UploadFiles.LoadFile("Demonstration");
 					Console.WriteLine(loadResult);
 					RunOnUiThread(() => pB.Progress = 3);
-					RunOnUiThread(() => txtProgress.Text = loadResult);
+					//RunOnUiThread(() => txtProgress.Text = loadResult);
 					Thread.Sleep(1000);
 					if (loadResult.Contains("PROCESS GOOD")) {
 						DemonstrationManager.CurrentDemonstrationToArchive();
@@ -145,10 +146,10 @@ namespace PresenterPlanner
 							}
 							if (ReportManager.SaveReports(curReport)) {
 								Console.WriteLine ("Report saved...");					
-								RunOnUiThread(() => txtProgress.Text = "Report saved...");
+								//RunOnUiThread(() => txtProgress.Text = "Report saved...");
 							} else {
 								Console.WriteLine ("Report not saved...");
-								RunOnUiThread(() => txtProgress.Text = "Report not saved...");
+								//RunOnUiThread(() => txtProgress.Text = "Report not saved...");
 							}
 						}
 					}
@@ -156,7 +157,8 @@ namespace PresenterPlanner
 					Thread.Sleep(2500);
 					Console.WriteLine ("Uploading finished...");
 					RunOnUiThread(() => pB.Visibility = ViewStates.Gone);
-					RunOnUiThread(() => txtProgress.Text = "Uploading finished...");
+					RunOnUiThread(() => txtProgress.Text = "Синхронизация успешно завершена.");
+					RunOnUiThread(() => btnUploadFiles.Visibility = ViewStates.Invisible);
 					}
 				);
 				t.Start ();
@@ -191,13 +193,13 @@ namespace PresenterPlanner
 				if (versionCurrent == versionOfNew) {
 					File.Delete (filePath);
 				} else {
-					btnUpdateApp.Text = "Установить обновление";
+					btnUpdateApp.Text = "Установить обновление программы";
 					btnUpdateApp.Visibility = ViewStates.Visible;
 					btnUpdateApp.Click -= OnClickDownLoad;
 					btnUpdateApp.Click += OnClickInstall;
 				}
 			} else {
-				btnUpdateApp.Text = "Скачать обновление";
+				btnUpdateApp.Text = "Скачать обновление программы";
 				btnUpdateApp.Visibility = ViewStates.Visible;
 				btnUpdateApp.Click -= OnClickInstall;
 				btnUpdateApp.Click += OnClickDownLoad;

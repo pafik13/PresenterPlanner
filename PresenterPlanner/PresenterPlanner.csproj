@@ -140,9 +140,12 @@
     <AndroidResource Include="Resources\layout\TableRow.axml" />
     <AndroidResource Include="Resources\drawable\border.xml" />
     <AndroidResource Include="Resources\values\Dimensions.xml" />
-    <AndroidResource Include="Resources\layout\TableRowHeader.xml" />
     <AndroidResource Include="Resources\layout\TableVisitCount.axml" />
     <AndroidResource Include="Resources\drawable\border_red.xml" />
+    <AndroidResource Include="Resources\layout\TableRowHeader.axml" />
+    <AndroidResource Include="Resources\layout\TableWeekNum.axml" />
+    <AndroidResource Include="Resources\drawable\border_blue.xml" />
+    <AndroidResource Include="Resources\drawable\border_green.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

@@ -1,15 +1,15 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Globalization;
+using System.Collections.Generic;
 
-using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
+using Android.App;
 using Android.Views;
 using Android.Widget;
+using Android.Content;
+using Android.Runtime;
 
 using PresenterPlanner.Lib.Doctors;
 using PresenterPlanner.Lib.Hospitals;
@@ -17,7 +17,7 @@ using PresenterPlanner.Lib.Report;
 
 namespace PresenterPlanner
 {
-	[Activity (Label = "Отчет о посещениях")]			
+	[Activity (Label = "Отчет о визитах")]			
 	public class ReportList : Activity
 	{
 		protected TableLayout tlHeader = null;
@@ -35,8 +35,6 @@ namespace PresenterPlanner
 
 			inflater = (LayoutInflater)GetSystemService(Context.LayoutInflaterService);
 
-			var doctors = DoctorManager.GetDoctors ();
-
 			tlHeader = FindViewById <TableLayout> (Resource.Id.tlHeader);
 			MakeTableHeader ();
 
@@ -48,11 +46,70 @@ namespace PresenterPlanner
 
 			var hospitals = HospitalManager.GetHospitals ().OrderBy(h=>h.Name).ToList();
 
+			foreach (Hospital hosp in hospitals) {
+				var doctors = DoctorManager.GetDoctors (hosp.ID).OrderBy(d=>d.SecondName).ToList();
 
-			foreach (Doctor doc in doctors) {
-				TableRow view = (TableRow)inflater.Inflate(Resource.Layout.TableRow, null);
+				if (doctors.Count > 0) {
+					TableRow hview = (TableRow)inflater.Inflate (Resource.Layout.TableRow, null);
+					hview.FindViewById <TextView> (Resource.Id.txtFIO).Text = hosp.Name;
+					hview.FindViewById <TextView> (Resource.Id.txtFIO).SetBackgroundResource (Resource.Drawable.border_blue);
+					hview.FindViewById <TextView> (Resource.Id.txtFIO).SetTextColor (Android.Graphics.Color.Black);
+					hview.FindViewById <TextView> (Resource.Id.txtFIO).SetShadowLayer (0, 0, 0, Android.Graphics.Color.Black);
 
-				view.FindViewById <TextView> (Resource.Id.txtFIO).Text =  doc.FIO ();
+					foreach (int weekNum in listOfWeekNum) {
+						TextView hviewVisitCount = (TextView)inflater.Inflate (Resource.Layout.TableVisitCount, null);
+						hviewVisitCount.Text = "";
+						hviewVisitCount.SetBackgroundResource (Resource.Drawable.border_blue);
+						hviewVisitCount.SetTextColor (Android.Graphics.Color.Black);
+						hview.AddView (hviewVisitCount);
+					}
+					tlContent.AddView (hview);
+				}
+
+				foreach (Doctor doc in doctors) {
+					TableRow view = (TableRow)inflater.Inflate (Resource.Layout.TableRow, null);
+
+					view.FindViewById <TextView> (Resource.Id.txtFIO).Text = doc.FIO () + "\n" + doc.Speciality;
+
+					if (maxFIOLength < view.FindViewById <TextView> (Resource.Id.txtFIO).Text.Length) {
+						maxFIOLength = view.FindViewById <TextView> (Resource.Id.txtFIO).Text.Length;
+						docID = doc.ID;
+					}
+
+					var report = ReportManager.GetReport (doc.ID);
+
+					foreach (int weekNum in listOfWeekNum) {
+						TextView viewVisitCount = (TextView)inflater.Inflate (Resource.Layout.TableVisitCount, null);
+						if (report == null) {
+							viewVisitCount.FindViewById <TextView> (Resource.Id.txtVisitCount).Text = "0";
+						} else {
+							int visitCount = report.FindVisitCountValue (weekNum);
+							viewVisitCount.FindViewById <TextView> (Resource.Id.txtVisitCount).Text = visitCount.ToString ();
+							switch (visitCount) {
+							case 0:
+								break;
+							case 1: 
+								viewVisitCount.SetBackgroundResource (Resource.Drawable.border_green);
+								viewVisitCount.SetTextColor (Android.Graphics.Color.Black);
+								break;
+							default: 
+								viewVisitCount.SetBackgroundResource (Resource.Drawable.border_red);
+								viewVisitCount.SetTextColor (Android.Graphics.Color.Black);
+								break;
+							}
+						}
+						viewVisitCount.LayoutParameters = new TableRow.LayoutParams (TableRow.LayoutParams.WrapContent, TableRow.LayoutParams.MatchParent);
+						view.AddView (viewVisitCount);
+					}
+					tlContent.AddView (view);
+				}
+			}
+
+			var doctorsWithoutHospitals = DoctorManager.GetDoctors (-1).OrderBy(d=>d.SecondName).ToList();
+			foreach (Doctor doc in doctorsWithoutHospitals) {
+				TableRow view = (TableRow)inflater.Inflate (Resource.Layout.TableRow, null);
+
+				view.FindViewById <TextView> (Resource.Id.txtFIO).Text = doc.FIO ();
 
 				if (maxFIOLength < view.FindViewById <TextView> (Resource.Id.txtFIO).Text.Length) {
 					maxFIOLength = view.FindViewById <TextView> (Resource.Id.txtFIO).Text.Length;
@@ -67,60 +124,26 @@ namespace PresenterPlanner
 						viewVisitCount.FindViewById <TextView> (Resource.Id.txtVisitCount).Text = "0";
 					} else {
 						int visitCount = report.FindVisitCountValue (weekNum);
-						viewVisitCount.FindViewById <TextView> (Resource.Id.txtVisitCount).Text = visitCount.ToString();
-						if (visitCount > 1) {
-							viewVisitCount.SetBackgroundResource(Resource.Drawable.border_red);
+						viewVisitCount.FindViewById <TextView> (Resource.Id.txtVisitCount).Text = visitCount.ToString ();
+						switch (visitCount) {
+						case 0:
+							break;
+						case 1: 
+							viewVisitCount.SetBackgroundResource (Resource.Drawable.border_green);
 							viewVisitCount.SetTextColor (Android.Graphics.Color.Black);
+							break;
+						default: 
+							viewVisitCount.SetBackgroundResource (Resource.Drawable.border_red);
+							viewVisitCount.SetTextColor (Android.Graphics.Color.Black);
+							break;
 						}
+						viewVisitCount.SetTextColor (Android.Graphics.Color.Black);
 					}
+					viewVisitCount.LayoutParameters = new TableRow.LayoutParams (TableRow.LayoutParams.WrapContent, TableRow.LayoutParams.MatchParent);
 					view.AddView (viewVisitCount);
 				}
-				tlContent.AddView(view);
-//				if (report == null) {
-//					view.FindViewById <TextView> (Resource.Id.w1).Text = "0";
-//					view.FindViewById <TextView> (Resource.Id.w2).Text = "0";
-//					view.FindViewById <TextView> (Resource.Id.w3).Text = "0";
-//					view.FindViewById <TextView> (Resource.Id.w4).Text = "0";
-//					view.FindViewById <TextView> (Resource.Id.w5).Text = "0";
-//					view.FindViewById <TextView> (Resource.Id.w6).Text = "0";
-//					view.FindViewById <TextView> (Resource.Id.w7).Text = "0";
-//					view.FindViewById <TextView> (Resource.Id.w8).Text = "0";
-//					view.FindViewById <TextView> (Resource.Id.w9).Text = "0";
-//					view.FindViewById <TextView> (Resource.Id.w10).Text = "0";
-//					view.FindViewById <TextView> (Resource.Id.w11).Text = "0";
-//					view.FindViewById <TextView> (Resource.Id.w12).Text = "0";
-//				} else {
-//					view.FindViewById <TextView> (Resource.Id.w1).Text = report.FindVisitCountValue (listOfWeekNum[0]).ToString();
-//					view.FindViewById <TextView> (Resource.Id.w2).Text = report.FindVisitCountValue (listOfWeekNum[1]).ToString();
-//					view.FindViewById <TextView> (Resource.Id.w3).Text = report.FindVisitCountValue (listOfWeekNum[2]).ToString();
-//					view.FindViewById <TextView> (Resource.Id.w4).Text = report.FindVisitCountValue (listOfWeekNum[3]).ToString();
-//					view.FindViewById <TextView> (Resource.Id.w5).Text = report.FindVisitCountValue (listOfWeekNum[4]).ToString();
-//					view.FindViewById <TextView> (Resource.Id.w6).Text = report.FindVisitCountValue (listOfWeekNum[5]).ToString();
-//					view.FindViewById <TextView> (Resource.Id.w7).Text = report.FindVisitCountValue (listOfWeekNum[6]).ToString();
-//					view.FindViewById <TextView> (Resource.Id.w8).Text = report.FindVisitCountValue (listOfWeekNum[7]).ToString();
-//					view.FindViewById <TextView> (Resource.Id.w9).Text = report.FindVisitCountValue (listOfWeekNum[8]).ToString();
-//					view.FindViewById <TextView> (Resource.Id.w10).Text = report.FindVisitCountValue (listOfWeekNum[9]).ToString();
-//					view.FindViewById <TextView> (Resource.Id.w11).Text = report.FindVisitCountValue (listOfWeekNum[10]).ToString();
-//					view.FindViewById <TextView> (Resource.Id.w12).Text = report.FindVisitCountValue (listOfWeekNum[11]).ToString();
-//				}
-
+				tlContent.AddView (view);
 			}
-
-			//var dummyHeader = inflater.Inflate (Resource.Layout.TableRowHeader, null);
-//			dummyHeader.FindViewById <TextView> (Resource.Id.txtFIO).LayoutParameters.Height = 0;
-//			dummyHeader.FindViewById <TextView> (Resource.Id.h1).LayoutParameters.Height = 0;
-//			dummyHeader.FindViewById <TextView> (Resource.Id.h2).LayoutParameters.Height = 0;
-//			dummyHeader.FindViewById <TextView> (Resource.Id.h3).LayoutParameters.Height = 0;
-//			dummyHeader.FindViewById <TextView> (Resource.Id.h4).LayoutParameters.Height = 0;
-//			dummyHeader.FindViewById <TextView> (Resource.Id.h5).LayoutParameters.Height = 0;
-//			dummyHeader.FindViewById <TextView> (Resource.Id.h6).LayoutParameters.Height = 0;
-//			dummyHeader.FindViewById <TextView> (Resource.Id.h7).LayoutParameters.Height = 0;
-//			dummyHeader.FindViewById <TextView> (Resource.Id.h8).LayoutParameters.Height = 0;
-//			dummyHeader.FindViewById <TextView> (Resource.Id.h9).LayoutParameters.Height = 0;
-//			dummyHeader.FindViewById <TextView> (Resource.Id.h10).LayoutParameters.Height = 0;
-//			dummyHeader.FindViewById <TextView> (Resource.Id.h11).LayoutParameters.Height = 0;
-//			dummyHeader.FindViewById <TextView> (Resource.Id.h12).LayoutParameters.Height = 0;
-			//tlContent.AddView (dummyHeader);
 
 			if (docID != 0) {
 				TableRow dummyView = (TableRow)inflater.Inflate(Resource.Layout.TableRow, null);
@@ -137,72 +160,27 @@ namespace PresenterPlanner
 					viewVisitCount.LayoutParameters = new TableRow.LayoutParams (TableRow.LayoutParams.MatchParent, 0);
 					dummyView.AddView (viewVisitCount);
 				}
-//				if (report == null) {
-//					dummyView.FindViewById <TextView> (Resource.Id.w1).Text = "5";
-//					dummyView.FindViewById <TextView> (Resource.Id.w2).Text = "5";
-//					dummyView.FindViewById <TextView> (Resource.Id.w3).Text = "5";
-//					dummyView.FindViewById <TextView> (Resource.Id.w4).Text = "5";
-//					dummyView.FindViewById <TextView> (Resource.Id.w5).Text = "5";
-//					dummyView.FindViewById <TextView> (Resource.Id.w6).Text = "5";
-//					dummyView.FindViewById <TextView> (Resource.Id.w7).Text = "5";
-//					dummyView.FindViewById <TextView> (Resource.Id.w8).Text = "5";
-//					dummyView.FindViewById <TextView> (Resource.Id.w9).Text = "5";
-//					dummyView.FindViewById <TextView> (Resource.Id.w10).Text = "5";
-//					dummyView.FindViewById <TextView> (Resource.Id.w11).Text = "5";
-//					dummyView.FindViewById <TextView> (Resource.Id.w12).Text = "5";
-//				} else {
-//					dummyView.FindViewById <TextView> (Resource.Id.w1).Text = report.FindVisitCountValue (listOfWeekNum[0]).ToString();
-//					dummyView.FindViewById <TextView> (Resource.Id.w2).Text = report.FindVisitCountValue (listOfWeekNum[1]).ToString();
-//					dummyView.FindViewById <TextView> (Resource.Id.w3).Text = report.FindVisitCountValue (listOfWeekNum[2]).ToString();
-//					dummyView.FindViewById <TextView> (Resource.Id.w4).Text = report.FindVisitCountValue (listOfWeekNum[3]).ToString();
-//					dummyView.FindViewById <TextView> (Resource.Id.w5).Text = report.FindVisitCountValue (listOfWeekNum[4]).ToString();
-//					dummyView.FindViewById <TextView> (Resource.Id.w6).Text = report.FindVisitCountValue (listOfWeekNum[5]).ToString();
-//					dummyView.FindViewById <TextView> (Resource.Id.w7).Text = report.FindVisitCountValue (listOfWeekNum[6]).ToString();
-//					dummyView.FindViewById <TextView> (Resource.Id.w8).Text = report.FindVisitCountValue (listOfWeekNum[7]).ToString();
-//					dummyView.FindViewById <TextView> (Resource.Id.w9).Text = report.FindVisitCountValue (listOfWeekNum[8]).ToString();
-//					dummyView.FindViewById <TextView> (Resource.Id.w10).Text = report.FindVisitCountValue (listOfWeekNum[9]).ToString();
-//					dummyView.FindViewById <TextView> (Resource.Id.w11).Text = report.FindVisitCountValue (listOfWeekNum[10]).ToString();
-//					dummyView.FindViewById <TextView> (Resource.Id.w12).Text = report.FindVisitCountValue (listOfWeekNum[11]).ToString();
-//				}
 				dummyView.FindViewById <TextView> (Resource.Id.txtFIO).LayoutParameters.Height = 0;
-//				dummyView.FindViewById <TextView> (Resource.Id.w1).LayoutParameters.Height = 0;
-//				dummyView.FindViewById <TextView> (Resource.Id.w2).LayoutParameters.Height = 0;
-//				dummyView.FindViewById <TextView> (Resource.Id.w3).LayoutParameters.Height = 0;
-//				dummyView.FindViewById <TextView> (Resource.Id.w4).LayoutParameters.Height = 0;
-//				dummyView.FindViewById <TextView> (Resource.Id.w5).LayoutParameters.Height = 0;
-//				dummyView.FindViewById <TextView> (Resource.Id.w6).LayoutParameters.Height = 0;
-//				dummyView.FindViewById <TextView> (Resource.Id.w7).LayoutParameters.Height = 0;
-//				dummyView.FindViewById <TextView> (Resource.Id.w8).LayoutParameters.Height = 0;
-//				dummyView.FindViewById <TextView> (Resource.Id.w9).LayoutParameters.Height = 0;
-//				dummyView.FindViewById <TextView> (Resource.Id.w10).LayoutParameters.Height = 0;
-//				dummyView.FindViewById <TextView> (Resource.Id.w11).LayoutParameters.Height = 0;
-//				dummyView.FindViewById <TextView> (Resource.Id.w12).LayoutParameters.Height = 0;
-//				dummyView.FindViewById<TableRow> (Resource.Id.trContent).LayoutParameters.Height = 0;
 				tlHeader.AddView (dummyView);
 			}
 		}
 
+
+			/*  MyFuncs */
 		void MakeTableHeader () {
-			var view = (TableRow)inflater.Inflate (Resource.Layout.TableRowHeader, null);
+			TableRow view = (TableRow)inflater.Inflate (Resource.Layout.TableRowHeader, null);
 			view.FindViewById <TextView> (Resource.Id.txtFIO).Text =  "ФИО";
 
 			listOfWeekNum = new List<int> ();
 			var min = ReportManager.GetMinWeekNum ();
-			view.FindViewById <TextView> (Resource.Id.h1).Text =  min.ToString();
-			view.FindViewById <TextView> (Resource.Id.h2).Text =  (min + 1).ToString();
-			view.FindViewById <TextView> (Resource.Id.h3).Text =  (min + 2).ToString();
-			view.FindViewById <TextView> (Resource.Id.h4).Text =  (min + 3).ToString();
-			view.FindViewById <TextView> (Resource.Id.h5).Text =  (min + 4).ToString();
-			view.FindViewById <TextView> (Resource.Id.h6).Text =  (min + 5).ToString();
-			view.FindViewById <TextView> (Resource.Id.h7).Text =  (min + 6).ToString();
-			view.FindViewById <TextView> (Resource.Id.h8).Text =  (min + 7).ToString();
-			view.FindViewById <TextView> (Resource.Id.h9).Text =  (min + 8).ToString();
-			view.FindViewById <TextView> (Resource.Id.h10).Text =  (min + 9).ToString();
-			view.FindViewById <TextView> (Resource.Id.h11).Text =  (min + 10).ToString();
-			view.FindViewById <TextView> (Resource.Id.h12).Text =  (min + 11).ToString();
 			for (int i = 0; i < 12; i++) {
-				listOfWeekNum.Add (min);
-				min = min + 1;
+				listOfWeekNum.Add ((min + i)%52);
+			}
+
+			foreach (int weekNum in listOfWeekNum) {
+				TextView txtWeekNum = (TextView)inflater.Inflate (Resource.Layout.TableWeekNum, null);
+				txtWeekNum.Text = weekNum.ToString ();
+				view.AddView (txtWeekNum);
 			}
 			tlHeader.AddView (view);
 		}

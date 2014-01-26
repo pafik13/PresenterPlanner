@@ -43,20 +43,26 @@ namespace PresenterPlanner
 				//XmlDocument doc = new XmlDocument();
 				//doc.LoadXml(e.Result);
 				//() =>Toast.MakeText(sc, fileTypes[pos] + ": " + e.Result, ToastLength.Short).Show()); //doc.GetElementById ("message").InnerText
-				Console.WriteLine (fileTypes[pos] + ": " + e.Result);
-				Console.WriteLine ("FILE NEED UPLOAD: " + e.Result.Contains("FILE NEED UPLOAD").ToString());
-				isNeedUploading = isNeedUploading || e.Result.Contains("FILE NEED UPLOAD");
-				pos = pos + 1;
-				if (fileTypes.Count == pos) {
-					if (isNeedUploading) {
-						sc.RunOnUiThread(() => sc.btnUploadFiles.Visibility = Android.Views.ViewStates.Visible);
-						sc.RunOnUiThread(() => sc.btnUploadFiles.Text = "Необходима синхронизация");
+				try {
+					Console.WriteLine (fileTypes [pos] + ": " + e.Result);
+					Console.WriteLine ("FILE NEED UPLOAD: " + e.Result.Contains ("FILE NEED UPLOAD").ToString ());
+					isNeedUploading = isNeedUploading || e.Result.Contains ("FILE NEED UPLOAD");
+					pos = pos + 1;
+					if (fileTypes.Count == pos) {
+						if (isNeedUploading) {
+							sc.RunOnUiThread (() => sc.btnUploadFiles.Visibility = Android.Views.ViewStates.Visible);
+							sc.RunOnUiThread (() => sc.btnUploadFiles.Text = "Необходима синхронизация визитов с сервером");
+						} else {
+							sc.RunOnUiThread (() => sc.txtProgress.Text = "Cинхронизация визитов с сервером не требуется");
+						}
+						sc.CheckNeWVersion ();
+						return;
+					} else {
+						CheckFiles ();
+						return;
 					}
-					sc.CheckNeWVersion();
-					return;
-				} else {
-					CheckFiles ();
-					return;
+				} catch (Exception exc) {
+					sc.RunOnUiThread (() => Toast.MakeText(sc, exc.Message, ToastLength.Long));
 				}
 			};
 		}
