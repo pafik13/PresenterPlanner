@@ -13,7 +13,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
         <TextView
-            android:text="Запланированные поликлиники"
+            android:text="Запланированные ЛПУ"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
         <TextView
-            android:text="Доступные поликлиники"
+            android:text="Доступные ЛПУ"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

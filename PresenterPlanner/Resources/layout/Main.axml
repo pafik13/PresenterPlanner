@@ -15,19 +15,21 @@
         p1:id="@+id/llFirstRow"
         p1:layout_weight="1">
         <Button
-            p1:text="Просмотр слайдов"
-            p1:id="@+id/btnSlides"
-            p1:layout_width="fill_parent"
-            p1:layout_height="fill_parent"
+            p1:text="Визиты"
+            p1:id="@+id/btnVisits"
+            p1:layout_width="match_parent"
+            p1:layout_height="match_parent"
             p1:layout_weight="1"
-            p1:gravity="right|bottom" />
+            p1:gravity="center"
+            p1:textSize="24dp" />
         <Button
-            p1:text="Планировщик показов"
-            p1:id="@+id/btnPlanning"
-            p1:layout_width="fill_parent"
-            p1:layout_height="fill_parent"
+            p1:text="План"
+            p1:id="@+id/btnPlanner"
+            p1:layout_width="match_parent"
+            p1:layout_height="match_parent"
             p1:layout_weight="1"
-            p1:gravity="left|bottom" />
+            p1:gravity="center"
+            p1:textSize="24dp" />
     </LinearLayout>
     <LinearLayout
         p1:orientation="horizontal"
@@ -38,18 +40,44 @@
         p1:id="@+id/llSecondRow"
         p1:layout_weight="1">
         <Button
-            p1:text="Синхронизация данных"
-            p1:layout_width="fill_parent"
-            p1:layout_height="fill_parent"
-            p1:id="@+id/btnSync"
-            p1:layout_weight="1"
-            p1:gravity="right|top" />
-        <Button
-            p1:text="Ввод врачей и больниц"
+            p1:text="Новые врачи/ЛПУ"
+            p1:layout_width="match_parent"
+            p1:layout_height="match_parent"
             p1:id="@+id/btnData"
-            p1:layout_width="fill_parent"
-            p1:layout_height="fill_parent"
             p1:layout_weight="1"
-            p1:gravity="left|top" />
+            p1:gravity="center"
+            p1:textSize="24dp" />
+        <Button
+            p1:text="Слайды"
+            p1:layout_width="match_parent"
+            p1:layout_height="match_parent"
+            p1:id="@+id/btnPresentations"
+            p1:layout_weight="1"
+            p1:textSize="24dp" />
+    </LinearLayout>
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="fill_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/llFirstRow"
+        p1:layout_weight="1">
+        <Button
+            p1:text="Синхронизация"
+            p1:id="@+id/btnSync"
+            p1:layout_width="match_parent"
+            p1:layout_height="match_parent"
+            p1:layout_weight="1"
+            p1:gravity="center"
+            p1:textSize="24dp" />
+        <Button
+            p1:text="Отчет"
+            p1:id="@+id/btnReport"
+            p1:layout_width="match_parent"
+            p1:layout_height="match_parent"
+            p1:layout_weight="1"
+            p1:gravity="center"
+            p1:textSize="24dp" />
     </LinearLayout>
 </LinearLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:text="txtVersion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtVersion"
+        android:textSize="24dp"
+        android:gravity="center" />
+    <Button
+        android:text="UpdateApp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnUpdateApp" />
+    <ProgressBar
+        android:id="@+id/StatusProgress"
+        android:layout_width="fill_parent"
+        android:layout_height="30dip"
+        android:layout_centerVertical="true"
+        android:progressDrawable="@android:drawable/progress_horizontal"
+        android:indeterminate="false"
+        android:indeterminateOnly="false" />
+    <TextView
+        android:text="txtProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtProgress"
+        android:textSize="24dp"
+        android:gravity="center" />
+    <Button
+        android:text="UploadFiles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnUploadFiles" />
+</LinearLayout>

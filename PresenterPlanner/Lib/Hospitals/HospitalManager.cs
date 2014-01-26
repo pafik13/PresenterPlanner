@@ -43,5 +43,10 @@ namespace PresenterPlanner.Lib.Hospitals
 		{
 			return HospitalRepository.DeleteHospital(id);
 		}
+
+		public static int HospitalCompare (Hospital hosp1, Hospital hosp2)
+		{
+			return String.CompareOrdinal (hosp1.Name, hosp2.Name);
+		}
 	}
 }

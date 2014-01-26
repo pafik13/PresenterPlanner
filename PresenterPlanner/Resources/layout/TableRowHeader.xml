@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/trHeader"
+    style="@style/HeaderRow">
+    <TextView
+        style="@style/HeaderText"
+        android:layout_weight="1"
+        android:id="@+id/txtFIO"
+        android:text="Col1" />
+    <TextView
+        style="@style/HeaderText"
+        android:id="@+id/h1"
+        android:text="Col2" />
+    <TextView
+        style="@style/HeaderText"
+        android:id="@+id/h2"
+        android:text="Col3" />
+    <TextView
+        style="@style/HeaderText"
+        android:id="@+id/h3"
+        android:text="Col4" />
+    <TextView
+        style="@style/HeaderText"
+        android:id="@+id/h4"
+        android:text="Col5" />
+    <TextView
+        style="@style/HeaderText"
+        android:id="@+id/h5"
+        android:text="Col6" />
+    <TextView
+        style="@style/HeaderText"
+        android:id="@+id/h6"
+        android:text="Col7" />
+    <TextView
+        style="@style/HeaderText"
+        android:id="@+id/h7"
+        android:text="Col8" />
+    <TextView
+        style="@style/HeaderText"
+        android:id="@+id/h8"
+        android:text="Col9" />
+    <TextView
+        style="@style/HeaderText"
+        android:id="@+id/h9"
+        android:text="Col10" />
+    <TextView
+        style="@style/HeaderText"
+        android:id="@+id/h10"
+        android:text="Col11" />
+    <TextView
+        style="@style/HeaderText"
+        android:id="@+id/h11"
+        android:text="Col12" />
+    <TextView
+        style="@style/HeaderText"
+        android:id="@+id/h12"
+        android:text="Col13" />
+</TableRow>

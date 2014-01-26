@@ -24,7 +24,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
@@ -32,7 +32,6 @@
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -50,12 +49,10 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BMSer.cs" />
     <Compile Include="Lib\Presentations.cs" />
     <Compile Include="PresentationsList.cs" />
     <Compile Include="PresentationView.cs" />
     <Compile Include="PlannerGrid.cs" />
-    <Compile Include="PlannerManager.cs" />
     <Compile Include="DoctorsAndHospitals.cs" />
     <Compile Include="Lib\Base\IEntity.cs" />
     <Compile Include="Lib\Doctors\DoctorManager.cs" />
@@ -77,6 +74,22 @@
     <Compile Include="HospitalDetails.cs" />
     <Compile Include="HospitalsList.cs" />
     <Compile Include="PlannerHospitalsLists.cs" />
+    <Compile Include="Adapters\VisitListAdpter.cs" />
+    <Compile Include="VisitsList.cs" />
+    <Compile Include="Lib\Demonstrations\Demonstration.cs" />
+    <Compile Include="Lib\Demonstrations\DemonstrationManager.cs" />
+    <Compile Include="Lib\Demonstrations\DemonstrationRepository.cs" />
+    <Compile Include="VisitPresentationView.cs" />
+    <Compile Include="Lib\PlannerManager.cs" />
+    <Compile Include="Lib\DownLoad.cs" />
+    <Compile Include="SyncView.cs" />
+    <Compile Include="UploadFiles.cs" />
+    <Compile Include="Lib\UpLoad.cs" />
+    <Compile Include="Lib\Report\Report.cs" />
+    <Compile Include="Lib\Report\ReportRepository.cs" />
+    <Compile Include="Lib\Report\ReportManager.cs" />
+    <Compile Include="ReportList.cs" />
+    <Compile Include="TestTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -115,6 +128,21 @@
     <AndroidResource Include="Resources\drawable\Icon_presents.png" />
     <AndroidResource Include="Resources\drawable\Icon_planner_72.png" />
     <AndroidResource Include="Resources\drawable\Icon_data.png" />
+    <AndroidResource Include="Resources\drawable\slides_file.png" />
+    <AndroidResource Include="Resources\layout\VisitsList.axml" />
+    <AndroidResource Include="Resources\layout\VisitsListHeader.axml" />
+    <AndroidResource Include="Resources\values\Colors.xml" />
+    <AndroidResource Include="Resources\drawable\Icon_presents_72.png" />
+    <AndroidResource Include="Resources\layout\SyncView.axml" />
+    <AndroidResource Include="Resources\layout\ReportList.axml" />
+    <AndroidResource Include="Resources\layout\TestTable.axml" />
+    <AndroidResource Include="Resources\values\Styles.xml" />
+    <AndroidResource Include="Resources\layout\TableRow.axml" />
+    <AndroidResource Include="Resources\drawable\border.xml" />
+    <AndroidResource Include="Resources\values\Dimensions.xml" />
+    <AndroidResource Include="Resources\layout\TableRowHeader.xml" />
+    <AndroidResource Include="Resources\layout\TableVisitCount.axml" />
+    <AndroidResource Include="Resources\drawable\border_red.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -123,5 +151,7 @@
     <Folder Include="Lib\Doctors\" />
     <Folder Include="Lib\Hospitals\" />
     <Folder Include="Adapters\" />
+    <Folder Include="Lib\Demonstrations\" />
+    <Folder Include="Lib\Report\" />
   </ItemGroup>
 </Project>

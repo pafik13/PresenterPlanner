@@ -9,7 +9,6 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using PresenterPlanner.PlannerManager;
 using PresenterPlanner.Lib.Hospitals;
 using PresenterPlanner.Lib;
 using Android.Telephony;
@@ -17,7 +16,7 @@ using Android.Telephony;
 namespace PresenterPlanner
 {
 
-	[Activity (Label = "Планировщик показов", Icon = "@drawable/Icon_planner")]			
+	[Activity (Label = "Планировщик визитов", Icon = "@drawable/Icon_planner")]			
 	public class PlannerGrid : Activity
 	{
 		protected GridView plannerGrid;
@@ -94,7 +93,7 @@ namespace PresenterPlanner
 			public DateAdapter(Activity c, DateTime dayInWeek)
 			{
 				context = c;
-				dt = PlannerManager.PlannerManager.GetWeeks(3, dayInWeek);
+				dt = PlannerManager.GetWeeks(3, dayInWeek);
 				setts = Common.GetSettings ();
 			}
 

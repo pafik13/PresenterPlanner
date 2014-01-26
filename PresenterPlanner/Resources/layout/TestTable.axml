@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_weight="1"
+    android:layout_height="match_parent">
+    <TableLayout
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_marginRight="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black">
+        <TableRow>
+            <TextView
+                android:textColor="@android:color/black"
+                android:gravity="left"
+                android:paddingRight="5dp"
+                android:background="@android:color/darker_gray"
+                android:text="col1" />
+            <TextView
+                android:textColor="@android:color/black"
+                android:gravity="left"
+                android:paddingRight="2dp"
+                android:background="@android:color/darker_gray"
+                android:text="col2" />
+            <TextView
+                android:textColor="@android:color/black"
+                android:gravity="center_horizontal"
+                android:layout_weight="1"
+                android:background="@android:color/darker_gray"
+                android:text="col3" />
+        </TableRow>
+    </TableLayout>
+    <ScrollView
+        android:id="@+id/table_scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="2dp"
+        android:layout_marginLeft="2dp">
+        <TableLayout
+            android:id="@+id/maintable"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/black">
+            <TableRow>
+                <TextView
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="DAY" />
+                <TextView
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="NOV" />
+                <TextView
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="STAR" />
+                <TextView
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="Col4" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+</LinearLayout>

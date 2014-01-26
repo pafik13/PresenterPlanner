@@ -49,6 +49,7 @@ namespace PresenterPlanner.Lib
 		}
 
 		public static Setts GetSettings () {
+			//	ReadXml ();
 			return settings;
 		}
 
@@ -60,6 +61,12 @@ namespace PresenterPlanner.Lib
 		public static string DatabaseFilePath {
 			get { 	
 				return Path.Combine (Common.DatabaseFileDir(), "Settings.xml");		
+			}
+		}
+
+		public static string VersionFileLink {
+			get { 	
+				return settings.dlSite + settings.versionFileName;		
 			}
 		}
 
@@ -92,6 +99,10 @@ namespace PresenterPlanner.Lib
 	{
 		public int weekOfStart;
 		public string phone;
+		public bool isAvailableNewVersion;
+		public string packageName;
+		public string dlSite;
+		public string versionFileName;
 	}
 }
 

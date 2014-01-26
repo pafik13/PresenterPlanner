@@ -30,7 +30,7 @@ namespace PresenterPlanner.Lib.Doctors
 		public WorkTime_Type chooseNwtType { get; set; } //необходимо в форме редактирования. КРИВО!!!!!
 
 		public string FIO () {
-			return SecondName + ' ' + FirstName + ' ' + ThirdName;
+			return (SecondName + ' ' + FirstName + ' ' + ThirdName).Trim();
 		}
 	}
 

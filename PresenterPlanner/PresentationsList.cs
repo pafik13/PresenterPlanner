@@ -1,13 +1,15 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.Generic;
+
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+
 using PresenterPlanner.Lib;
 
 namespace PresenterPlanner
@@ -34,6 +36,7 @@ namespace PresenterPlanner
 
 			this.ListAdapter = new ArrayAdapter<Tuple<string>> (this, Android.Resource.Layout.SimpleListItem1, items);
 		}
+
 		protected override void OnListItemClick(Android.Widget.ListView l, Android.Views.View v, int position, long id)
 		{
 			var t = items[position];

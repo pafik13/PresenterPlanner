@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/trContent"
+    style="@style/BodyRow">
+    <TextView
+        android:id="@+id/txtFIO"
+        android:layout_weight="1"
+        android:text="Col1"
+        style="@style/BodyText" />
+</TableRow>

@@ -8,6 +8,7 @@ namespace PresenterPlanner.Lib.Hospitals
 	{
 		public Hospital ()
 		{
+			planners = new List<PlannerItem> ();
 		}
 
 		public int ID { get; set; }        // ID больницы/отделения

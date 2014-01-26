@@ -1,14 +1,19 @@
 using System;
+using System.Net;
+using System.Text;
+using System.Xml;
+using System.IO;
+using System.Threading;
+
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using System.Net;
-using System.Xml.Serialization;
-using System.IO;
-using BitMapSerializer;
+
+using PresenterPlanner.Lib;
 
 namespace PresenterPlanner
 {
@@ -16,6 +21,12 @@ namespace PresenterPlanner
 	[Activity (Label = "Планировщик", MainLauncher = true, Icon = "@drawable/Icon_planner_72")]
 	public class MainActivity : Activity
 	{
+		protected Button btnPresentations = null;
+		protected Button btnPlanner = null;
+		protected Button btnData = null;
+		protected Button btnVisits = null;
+		protected Button btnSync = null;
+		protected Button btnReport = null;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -26,35 +37,65 @@ namespace PresenterPlanner
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
 
-			Button btnSlides = FindViewById <Button> (Resource.Id.btnSlides);
-			btnSlides.Click += (object sender, EventArgs e) => 
+			btnPresentations = FindViewById <Button> (Resource.Id.btnPresentations);
+			btnPresentations.Click += (object sender, EventArgs e) => 
 			{
-				var presents = new Intent ( this, typeof(PresentationsList));
-				StartActivity (presents);
+				btnPresentations.Text = "Загрузка презентаций...";
+				var presentations = new Intent (this, typeof(PresentationsList));
+				StartActivity (presentations);
 			};
 
-			Button btnPlanning = FindViewById <Button> (Resource.Id.btnPlanning);
-			btnPlanning.Click += (object sender, EventArgs e) => 
+			btnPlanner = FindViewById <Button> (Resource.Id.btnPlanner);
+			btnPlanner.Click += (object sender, EventArgs e) => 
 			{
-				var planning = new Intent ( this, typeof(PlannerGrid));
-				StartActivity (planning);
+				btnPlanner.Text = "Загрузка планировщика...";
+				var planner = new Intent (this, typeof(PlannerGrid));
+				StartActivity (planner);
 			};
 
-			Button btnData = FindViewById <Button> (Resource.Id.btnData);
+			btnData = FindViewById <Button> (Resource.Id.btnData);
 			btnData.Click += (object sender, EventArgs e) => 
 			{
-				var data = new Intent ( this, typeof(DoctorsAndHospitals));
+				btnData.Text = "Загрузка данных...";
+				var data = new Intent (this, typeof(DoctorsAndHospitals));
 				StartActivity (data);
 			};
 
-//			WebClient client = new WebClient();
-//			Byte[] pageData = client.DownloadData("http://www.contoso.com");
-//			string pageHtml = Encoding.ASCII.GetString(pageData);
-//
-//			TextView tv_Inet = FindViewById<TextView> (Resource.Id.tv_Inet);
-//			tv_Inet.Text = pageHtml;
-//			Console.WriteLine(pageHtml);
+			btnVisits = FindViewById <Button> (Resource.Id.btnVisits);
+			btnVisits.Click += (object sender, EventArgs e) => 
+			{
+				btnVisits.Text = "Загрузка визитов...";
+				var visits = new Intent (this, typeof(VisitsList));
+				StartActivity (visits);
+			};
 
+			btnSync = FindViewById <Button> (Resource.Id.btnSync);
+			btnSync.Click += (object sender, EventArgs e) => 
+			{
+				btnSync.Text = "Загрузка информации...";
+				var sync = new Intent (this, typeof(SyncView));
+				StartActivity (sync);
+			};
+
+			btnReport = FindViewById <Button> (Resource.Id.btnReport);
+			btnReport.Click += (object sender, EventArgs e) => 
+			{
+				btnReport.Text = "Загрузка отчета...";
+				var report = new Intent (this, typeof(ReportList));
+				StartActivity (report);
+			};
+
+		}
+
+		protected override void OnResume ()
+		{
+			btnVisits.Text = "Визиты";
+			btnPlanner.Text = "План";
+			btnData.Text = "Новые врачи/ЛПУ";
+			btnPresentations.Text = "Слайды";
+			btnSync.Text = "Синхронизация";
+			btnReport.Text = "Отчет";
+			base.OnResume ();
 		}
 	}
 }

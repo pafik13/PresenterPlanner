@@ -1,11 +1,21 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="PresenterPlanner\ReportList.cs">
+    <Files>
+      <File FileName="PresenterPlanner\ReportList.cs" Line="112" Column="68" />
+      <File FileName="PresenterPlanner\Adapters\DoctorListAdapter.cs" Line="1" Column="1" />
+      <File FileName="PresenterPlanner\MainActivity.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="PresenterPlanner\PresentationView.cs" line="34" offsetX="639" offsetY="534" expression="Intent" liveUpdate="False" />
+    <Watch file="PresenterPlanner\Lib\DownLoad.cs" line="42" offsetX="917" offsetY="697" expression="saveFileStream" liveUpdate="False" />
+    <Watch file="PresenterPlanner\Lib\DownLoad.cs" line="42" offsetX="917" offsetY="697" expression="saveFileStream" liveUpdate="False" />
+    <Watch file="PresenterPlanner\Lib\DownLoad.cs" line="46" offsetX="525" offsetY="765" expression="saveFileStream" liveUpdate="False" />
+    <Watch file="PresenterPlanner\SyncView.cs" line="79" offsetX="462" offsetY="1325" expression="pB" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
-  <MonoDevelop.Ide.ItemProperties.PresenterPlanner AndroidDeviceId-Debug="CAF22CB0E015F9E" MonoForAntroid.PreferredDevice="10.1in WXGA (Tablet)" AndroidDeviceId-Release="CAF22CB0E015F9E" />
+  <MonoDevelop.Ide.ItemProperties.PresenterPlanner MonoForAntroid.PreferredDevice="10.1in WXGA (Tablet)" AndroidDeviceId-Release="CAF22CB0E015F9E" AndroidDeviceId-Debug="CAF22CB0E015F9E" />
 </Properties>

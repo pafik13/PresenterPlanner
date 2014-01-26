@@ -156,7 +156,7 @@ namespace PresenterPlanner
 			doctor.Speciality = SpecTextEdit.Text;
 			doctor.Position = PosTextEdit.Text;
 			DoctorManager.SaveDoctor(doctor);
-			DoctorPositions.SavePosition (doctor.Speciality);
+			DoctorSpecialitys.SaveSpeciality (doctor.Speciality);
 			DoctorPositions.SavePosition (doctor.Position);
 			progress.Dismiss();
 			Finish();
