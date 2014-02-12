@@ -20,6 +20,7 @@
             android:layout_below="@+id/SecondNameLabel"
             android:imeOptions="actionNext"
             android:maxLines="1"
+            android:maxLength="255"
             android:inputType="textCapWords" />
         <TextView
             android:id="@+id/FirstNameLabel"
@@ -33,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/FirstNameLabel"
             android:maxLines="1"
+            android:maxLength="255"
             android:imeOptions="actionNext"
             android:inputType="textCapWords" />
         <TextView
@@ -47,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/ThirdNameLabel"
             android:maxLines="1"
+            android:maxLength="255"
             android:imeOptions="actionNext"
             android:inputType="textCapWords" />
         <TextView
@@ -61,6 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/TelLabel"
             android:maxLines="1"
+            android:maxLength="50"
             android:imeOptions="actionNext"
             android:inputType="phone" />
         <TextView
@@ -75,6 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/EmailLabel"
             android:maxLines="1"
+            android:maxLength="50"
             android:imeOptions="actionNext"
             android:inputType="textEmailAddress" />
         <TextView
@@ -89,6 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/SpecialityLabel"
             android:maxLines="1"
+            android:maxLength="50"
             android:imeOptions="actionNext"
             android:inputType="textCapSentences" />
         <TextView
@@ -103,6 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/PositionLabel"
             android:maxLines="1"
+            android:maxLength="50"
             android:imeOptions="actionDone"
             android:inputType="textCapSentences" />
         <Spinner

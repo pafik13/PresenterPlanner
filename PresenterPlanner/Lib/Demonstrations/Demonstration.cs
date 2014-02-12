@@ -15,6 +15,7 @@ namespace PresenterPlanner.Lib
 	{
 		public int doctorID = 0;
 		public DateTime visitDate;
+		public DateTime visitTime;
 		public string analyze;
 		public bool isVerifyAnalyze;
 		public string commentForPharmacy;

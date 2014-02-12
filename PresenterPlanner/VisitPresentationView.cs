@@ -1,7 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Collections.Generic;
+
 using Android.Content;
 using Android.OS;
 using Android.App;
@@ -9,9 +11,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
-using PresenterPlanner.Lib;
 using Android.Locations;
-using System.Threading;
+
+using PresenterPlanner.Lib;
 
 namespace PresenterPlanner
 {
@@ -43,6 +45,8 @@ namespace PresenterPlanner
 			// Create your application here
 			SetContentView (Resource.Layout.PresentationView);
 
+			Window.AddFlags (WindowManagerFlags.KeepScreenOn);
+
 			(FindViewById<TextView> (Resource.Id.txtView)).Visibility = ViewStates.Gone;
 
 			gestureDetector = new GestureDetector (this);
@@ -57,6 +61,10 @@ namespace PresenterPlanner
 
 			lastSlideTime = DateTime.Now;
 			demonstration = DemonstrationManager.GetDemonstration (doctorID, DateTime.Today);
+
+			if (demonstration.visitTime.Date != DateTime.Today) {
+				demonstration.visitTime = DateTime.Now;
+			}
 
 			selectedPresent = Intent.GetIntExtra ("presentationID", 0);
 

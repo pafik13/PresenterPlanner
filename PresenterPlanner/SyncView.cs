@@ -157,6 +157,7 @@ namespace PresenterPlanner
 					Thread.Sleep(2500);
 					Console.WriteLine ("Uploading finished...");
 					RunOnUiThread(() => pB.Visibility = ViewStates.Gone);
+					RunOnUiThread(() => txtProgress.Visibility = ViewStates.Visible);
 					RunOnUiThread(() => txtProgress.Text = "Синхронизация успешно завершена.");
 					RunOnUiThread(() => btnUploadFiles.Visibility = ViewStates.Invisible);
 					}

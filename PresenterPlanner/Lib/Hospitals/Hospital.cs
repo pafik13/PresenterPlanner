@@ -11,10 +11,12 @@ namespace PresenterPlanner.Lib.Hospitals
 			planners = new List<PlannerItem> ();
 		}
 
-		public int ID { get; set; }        // ID больницы/отделения
-		public string Name { get; set; }   // Название больницы/отделения
-		public string Adress { get; set; } // Адрес больницы/отделения
-		public bool IsChosen { get; set; } // 
+		public int ID { get; set; }        		 // ID больницы/отделения
+		public string Name { get; set; }   		 // Название больницы/отделения
+		public string Adress { get; set; } 		 // Адрес больницы/отделения
+		public bool IsChosen { get; set; } 		 // 
+		public string NearestMetro { get; set; } // Ближайшее метро
+		public string RegPhone { get; set; }	 // Телефон регистратуры
 		public List<PlannerItem> planners { get; set; } //
 	}
 

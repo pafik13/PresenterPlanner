@@ -19,6 +19,8 @@ namespace PresenterPlanner
 		protected Hospital hospital = new Hospital();
 		protected EditText hospitalName = null;
 		protected EditText hospitalAdress = null;
+		protected EditText hospitalNearestMetro = null;
+		protected EditText hospitalRegPhone = null;
 		protected Button cancelDeleteButton = null;
 		protected Button saveButton = null;
 		ProgressDialog progress;
@@ -37,6 +39,8 @@ namespace PresenterPlanner
 			SetContentView(Resource.Layout.HospitalDetails);
 			hospitalName = FindViewById<EditText>(Resource.Id.txtHospitalName);
 			hospitalAdress = FindViewById<EditText>(Resource.Id.txtHospitalAdress);
+			hospitalNearestMetro = FindViewById<EditText>(Resource.Id.txtHospitalNearestMetro);
+			hospitalRegPhone = FindViewById<EditText>(Resource.Id.txtHospitalRegPhone);
 			saveButton = FindViewById<Button>(Resource.Id.btnSave);
 
 			// find all our controls
@@ -50,8 +54,14 @@ namespace PresenterPlanner
 			// name
 			if(hospitalName != null) { hospitalName.Text = hospital.Name; }
 
-			// notes
+			// adress
 			if(hospitalAdress != null) { hospitalAdress.Text = hospital.Adress; }
+
+			// adress
+			if(hospitalNearestMetro != null) { hospitalNearestMetro.Text = hospital.NearestMetro; }
+
+			// adress
+			if(hospitalRegPhone != null) { hospitalRegPhone.Text = hospital.RegPhone; }
 
 			// button clicks 
 			cancelDeleteButton.Click += (sender, e) => { CancelDelete(); };
@@ -63,6 +73,8 @@ namespace PresenterPlanner
 			progress = ProgressDialog.Show(this, "Обработка...", "Пожалуйста, подождите.", true);
 			hospital.Name = hospitalName.Text;
 			hospital.Adress = hospitalAdress.Text;
+			hospital.NearestMetro = hospitalNearestMetro.Text;
+			hospital.RegPhone = hospitalRegPhone.Text;
 			hospital.IsChosen = false;
 			HospitalManager.SaveHospital(hospital);
 			progress.Dismiss();

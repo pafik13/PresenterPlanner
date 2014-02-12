@@ -1,12 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PresenterPlanner\Resources\values\Styles.xml">
-    <Files>
-      <File FileName="PresenterPlanner\ReportList.cs" Line="137" Column="67" />
-      <File FileName="PresenterPlanner\Resources\values\Styles.xml" Line="9" Column="41" />
-      <File FileName="PresenterPlanner\Resources\drawable\border.xml" Line="8" Column="31" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -17,5 +11,5 @@
     <Watch file="PresenterPlanner\Lib\DownLoad.cs" line="46" offsetX="525" offsetY="765" expression="saveFileStream" liveUpdate="False" />
     <Watch file="PresenterPlanner\SyncView.cs" line="79" offsetX="462" offsetY="1325" expression="pB" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
-  <MonoDevelop.Ide.ItemProperties.PresenterPlanner MonoForAntroid.PreferredDevice="10.1in WXGA (Tablet)" AndroidDeviceId-Release="CAF22CB0E015F9E" AndroidDeviceId-Debug="CAF22CB0E015F9E" />
+  <MonoDevelop.Ide.ItemProperties.PresenterPlanner MonoForAntroid.PreferredDevice="10.1in WXGA (Tablet)" AndroidDeviceId-Debug="CAF22CB0E015F9E" />
 </Properties>

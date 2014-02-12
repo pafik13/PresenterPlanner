@@ -135,11 +135,12 @@
                     android:paddingBottom="5dp"
                     android:paddingLeft="5dp" />
                 <EditText
-                    android:inputType="textMultiLine"
+                    android:inputType="textCapSentences"
                     android:layout_width="match_parent"
                     android:layout_height="100.0dp"
                     android:id="@+id/edtAnalyze"
-                    android:gravity="top" />
+                    android:gravity="top"
+                    android:capitalize="sentences" />
                 <TextView
                     android:text="Комментарий для представителей, работающих с аптеками:"
                     android:layout_width="match_parent"
@@ -151,13 +152,13 @@
                     android:paddingBottom="5dp"
                     android:paddingLeft="5dp" />
                 <EditText
-                    android:inputType="textMultiLine"
+                    android:inputType="textCapSentences"
                     android:layout_width="match_parent"
                     android:layout_height="100.0dp"
                     android:id="@+id/edtCommentForPharmacy"
                     android:gravity="top" />
                 <TextView
-                    android:text="POS-материалы/статьи^"
+                    android:text="POS-материалы/статьи:"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/POSmaterialsLabel"
@@ -167,7 +168,7 @@
                     android:paddingBottom="5dp"
                     android:paddingLeft="5dp" />
                 <EditText
-                    android:inputType="textMultiLine"
+                    android:inputType="textCapSentences"
                     android:layout_width="match_parent"
                     android:layout_height="100.0dp"
                     android:id="@+id/edtPOSmaterials"

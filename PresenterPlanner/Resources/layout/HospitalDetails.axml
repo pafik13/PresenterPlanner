@@ -15,9 +15,10 @@
         android:id="@+id/txtHospitalName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/HospitllNameLabel"
+        android:layout_below="@+id/txtHospitalAdress"
         android:imeOptions="actionNext"
         android:maxLines="1"
+        android:maxLength="255"
         android:inputType="textCapWords" />
     <TextView
         android:id="@+id/HospitalAdressLabel"
@@ -29,10 +30,41 @@
         android:id="@+id/txtHospitalAdress"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/HospitalAdressLabel"
+        android:layout_below="@+id/txtHospitalNearestMetro"
         android:maxLines="1"
+        android:maxLength="255"
+        android:imeOptions="actionNext"
+        android:inputType="textCapSentences" />
+    <TextView
+        android:id="@+id/HospitalNearestMetroLabel"
+        android:text="Ближайшее метро:"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtHospitalName" />
+    <EditText
+        android:id="@+id/txtHospitalNearestMetro"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtHospitalRegPhone"
+        android:maxLines="1"
+        android:maxLength="50"
+        android:imeOptions="actionNext"
+        android:inputType="textCapSentences" />
+    <TextView
+        android:id="@+id/HospitalRegPhoneLabel"
+        android:text="Телефон регистратуры:"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtHospitalName" />
+    <EditText
+        android:id="@+id/txtHospitalRegPhone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnCancelDelete"
+        android:maxLines="1"
+        android:maxLength="20"
         android:imeOptions="actionDone"
-        android:inputType="text" />
+        android:inputType="phone" />
     <Button
         android:id="@+id/btnCancelDelete"
         android:text="Удалить"

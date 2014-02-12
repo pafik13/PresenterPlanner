@@ -8,8 +8,9 @@ using Android.OS;
 using Android.App;
 using Android.Views;
 using Android.Widget;
-using Android.Content;
 using Android.Runtime;
+using Android.Content;
+using Android.Content.PM;
 
 using PresenterPlanner.Lib.Doctors;
 using PresenterPlanner.Lib.Hospitals;
@@ -17,7 +18,7 @@ using PresenterPlanner.Lib.Report;
 
 namespace PresenterPlanner
 {
-	[Activity (Label = "Отчет о визитах")]			
+	[Activity (Label = "Отчет о визитах", ScreenOrientation = ScreenOrientation.SensorLandscape)]			
 	public class ReportList : Activity
 	{
 		protected TableLayout tlHeader = null;
@@ -172,9 +173,13 @@ namespace PresenterPlanner
 			view.FindViewById <TextView> (Resource.Id.txtFIO).Text =  "ФИО";
 
 			listOfWeekNum = new List<int> ();
+			int delta = 0;
 			var min = ReportManager.GetMinWeekNum ();
 			for (int i = 0; i < 12; i++) {
-				listOfWeekNum.Add ((min + i)%52);
+				if ((min + i) % 53 == 0) {
+					delta = 1;
+				}
+				listOfWeekNum.Add ((min + i + delta) % 53);
 			}
 
 			foreach (int weekNum in listOfWeekNum) {

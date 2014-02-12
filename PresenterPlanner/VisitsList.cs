@@ -24,6 +24,7 @@ namespace PresenterPlanner
 		protected VisitListAdpter adapter = null;
 		protected List <Presentation> presents;
 //		protected Spinner spn = null;
+		protected Demonstration lastDemo;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -41,6 +42,10 @@ namespace PresenterPlanner
 			int week = (cal.GetWeekOfYear (DateTime.Today, dfi.CalendarWeekRule, dfi.FirstDayOfWeek) - sett.weekOfStart) % 3;
 
 			var choosenHospitals = (List<Hospital>)HospitalManager.GetChoosenHospitals (week, DateTime.Today.DayOfWeek);
+
+			FindViewById <TextView> (Resource.Id.edtAnalyze).SetSingleLine (false);
+			FindViewById <TextView> (Resource.Id.edtCommentForPharmacy).SetSingleLine (false);
+			FindViewById <TextView> (Resource.Id.edtPOSmaterials).SetSingleLine (false);
 
 //			var doctors = DoctorManager.GetDoctors ();
 //
@@ -61,6 +66,14 @@ namespace PresenterPlanner
 			lvList.Adapter = adapter; //ArrayAdapter<String> (this, Android.Resource.Layout.SimpleListItemChecked, docs);
 			lvList.ChoiceMode = ChoiceMode.Single;
 			lvList.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
+				var doctor = adapter [e.Position];
+
+				if (lastDemo != null) {
+					lastDemo.analyze = FindViewById <TextView> (Resource.Id.edtAnalyze).Text;
+					lastDemo.commentForPharmacy = FindViewById <TextView> (Resource.Id.edtCommentForPharmacy).Text;
+					lastDemo.POSmaterials = FindViewById <TextView> (Resource.Id.edtPOSmaterials).Text;
+					DemonstrationManager.SaveDemonstration(lastDemo);
+				}
 				//presentations
 				if (presents == null) {
 					var lblPresents = FindViewById<TextView> (Resource.Id.PresentLabel);
@@ -69,13 +82,6 @@ namespace PresenterPlanner
 					btnShow.Visibility = ViewStates.Visible;
 					var spn = FindViewById <Spinner> (Resource.Id.spnPresents);
 					spn.Visibility = ViewStates.Visible;
-
-					Demonstration lastDemo = DemonstrationManager.GetLastDemonstration(adapter [e.Position].ID);
-					if (lastDemo != null) {
-						FindViewById <TextView> (Resource.Id.edtAnalyze).Text = lastDemo.analyze;
-						FindViewById <TextView> (Resource.Id.edtCommentForPharmacy).Text = lastDemo.commentForPharmacy;
-						FindViewById <TextView> (Resource.Id.edtPOSmaterials).Text = lastDemo.POSmaterials;
-					}
 
 					string[] load = {"Загружается список презентаций..."};
 					spn.Adapter = new ArrayAdapter<String> (this, Android.Resource.Layout.SimpleListItem1, load);
@@ -95,14 +101,22 @@ namespace PresenterPlanner
 						});
 					})).Start ();
 				}
-				FindViewById <TextView> (Resource.Id.SecondNameLabel).Text = "Фамилия: " + adapter [e.Position].SecondName;
-				FindViewById <TextView> (Resource.Id.FirstNameLabel).Text = "Имя: " + adapter [e.Position].FirstName;
-				FindViewById <TextView> (Resource.Id.ThirdNameLabel).Text = "Отчество: " + adapter [e.Position].ThirdName;
-				FindViewById <TextView> (Resource.Id.TelLabel).Text = "Телефон: " + adapter [e.Position].Tel;
-				FindViewById <TextView> (Resource.Id.EmailLabel).Text = "E-mail: " + adapter [e.Position].Email;
-				FindViewById <TextView> (Resource.Id.SpecialityLabel).Text = "Специалность: " + adapter [e.Position].Speciality;
-				FindViewById <TextView> (Resource.Id.PositionLabel).Text = "Должность: " + adapter [e.Position].Position;
-				FindViewById <TextView> (Resource.Id.HospitalLabel).Text = "Поликлиника: " + HospitalManager.GetHospital (adapter [e.Position].HospitalID).Name;
+
+				lastDemo = DemonstrationManager.GetDemonstration(doctor.ID, DateTime.Today);
+				if (lastDemo != null) {
+					FindViewById <TextView> (Resource.Id.edtAnalyze).Text = lastDemo.analyze;
+					FindViewById <TextView> (Resource.Id.edtCommentForPharmacy).Text = lastDemo.commentForPharmacy;
+					FindViewById <TextView> (Resource.Id.edtPOSmaterials).Text = lastDemo.POSmaterials;
+				}
+
+				FindViewById <TextView> (Resource.Id.SecondNameLabel).Text = "Фамилия: " + doctor.SecondName;
+				FindViewById <TextView> (Resource.Id.FirstNameLabel).Text = "Имя: " + doctor.FirstName;
+				FindViewById <TextView> (Resource.Id.ThirdNameLabel).Text = "Отчество: " + doctor.ThirdName;
+				FindViewById <TextView> (Resource.Id.TelLabel).Text = "Телефон: " + doctor.Tel;
+				FindViewById <TextView> (Resource.Id.EmailLabel).Text = "E-mail: " + doctor.Email;
+				FindViewById <TextView> (Resource.Id.SpecialityLabel).Text = "Специалность: " + doctor.Speciality;
+				FindViewById <TextView> (Resource.Id.PositionLabel).Text = "Должность: " + doctor.Position;
+				FindViewById <TextView> (Resource.Id.HospitalLabel).Text = "Поликлиника: " + HospitalManager.GetHospital (doctor.HospitalID).Name;
 			};
 
 
@@ -119,6 +133,14 @@ namespace PresenterPlanner
 //
 //			spn.Adapter = new ArrayAdapter<String> (this, Android.Resource.Layout.SimpleListItem1, presentsTitle.ToArray ());
 			FindViewById <Button> (Resource.Id.btnShow).Click += (object sender, EventArgs e) => {
+
+				if (lastDemo != null) {
+					lastDemo.analyze = FindViewById <TextView> (Resource.Id.edtAnalyze).Text;
+					lastDemo.commentForPharmacy = FindViewById <TextView> (Resource.Id.edtCommentForPharmacy).Text;
+					lastDemo.POSmaterials = FindViewById <TextView> (Resource.Id.edtPOSmaterials).Text;
+					DemonstrationManager.SaveDemonstration(lastDemo);
+				}
+
 				var slides = new Intent (this, typeof(VisitPresentationView));
 				int presentationID = 0;
 				int partID = FindViewById <Spinner> (Resource.Id.spnPresents).SelectedItemPosition;
@@ -131,6 +153,17 @@ namespace PresenterPlanner
 				slides.PutExtra ("doctorID", adapter [lvList.CheckedItemPosition].ID);
 				StartActivity (slides);
 			};
+		}
+
+		override protected void OnPause()
+		{
+			base.OnPause(); // Always call the superclass first
+			if (lastDemo != null) {
+				lastDemo.analyze = FindViewById <TextView> (Resource.Id.edtAnalyze).Text;
+				lastDemo.commentForPharmacy = FindViewById <TextView> (Resource.Id.edtCommentForPharmacy).Text;
+				lastDemo.POSmaterials = FindViewById <TextView> (Resource.Id.edtPOSmaterials).Text;
+				DemonstrationManager.SaveDemonstration (lastDemo);
+			}
 		}
 	}
 }

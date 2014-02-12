@@ -50,6 +50,7 @@ namespace PresenterPlanner
 					pos = pos + 1;
 					if (fileTypes.Count == pos) {
 						if (isNeedUploading) {
+							sc.RunOnUiThread (() => sc.txtProgress.Visibility = Android.Views.ViewStates.Gone);
 							sc.RunOnUiThread (() => sc.btnUploadFiles.Visibility = Android.Views.ViewStates.Visible);
 							sc.RunOnUiThread (() => sc.btnUploadFiles.Text = "Необходима синхронизация визитов с сервером");
 						} else {
