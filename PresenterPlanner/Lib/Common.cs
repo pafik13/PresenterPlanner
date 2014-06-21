@@ -103,6 +103,7 @@ namespace PresenterPlanner.Lib
 		public string packageName;
 		public string dlSite;
 		public string versionFileName;
+		public string vrsnOfPresents; 
 	}
 }
 

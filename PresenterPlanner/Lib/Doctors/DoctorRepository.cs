@@ -47,7 +47,7 @@ namespace PresenterPlanner.Lib.Doctors
 			}
 		}
 
-		public static Doctor GetDoctor(int id)
+		public static Doctor GetDoctor(int id, bool isNeedNew)
 		{
 			for (var t = 0; t < doctors.Count; t++) {
 				if (doctors[t].ID == id)
@@ -76,7 +76,11 @@ namespace PresenterPlanner.Lib.Doctors
 			vwtOddEven.Even_From = new DateTime(1,1,1,9,0,0);
 			vwtOddEven.Even_Till = new DateTime(1,1,1,18,0,0);
 
-			return new Doctor() {ID=id, wtDays = vwtDays, wtOddEven = vwtOddEven};
+			if (isNeedNew) {
+				return new Doctor() {ID=id, wtDays = vwtDays, wtOddEven = vwtOddEven};
+			} else {
+				return null;
+			}
 		}
 
 		public static IEnumerable<Doctor> GetDoctors ()

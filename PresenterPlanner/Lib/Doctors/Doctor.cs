@@ -13,22 +13,30 @@ namespace PresenterPlanner.Lib.Doctors
 
 		//[PrimaryKey, AutoIncrement]
 		public int ID { get; set; }
-		public char SNChar { get; set; } 	   // Первая буква фамилии
-		public string SecondName { get; set; } // Фамилия
-		public string FirstName { get; set; }  // Имя
-		public string ThirdName { get; set; }  // Отчество
-		public bool IsChosen { get; set; }	   // Выбран?
-		public int HospitalID { get; set; }	   // Больница
-		public string Tel { get; set; }	   	   // Телефон
-		public string Email { get; set; }	   // E-mail
-		public string Position { get; set; }   // Должность
-		public string Speciality { get; set; } // Специальность
+		public char SNChar { get; set; } 	           // Первая буква фамилии
+		public string SecondName { get; set; }         // Фамилия
+		public string FirstName { get; set; }          // Имя
+		public string ThirdName { get; set; }          // Отчество
+		public bool IsChosen { get; set; }	           // Выбран?
+		public int HospitalID { get; set; }	   		   // Больница
+		public string Tel { get; set; }	   	           // Телефон
+		public string Email { get; set; }	           // E-mail
+		public string Position { get; set; }   		   // Должность
+		public string Speciality { get; set; } 		   // Специальность
+		public string Cabinet { get; set; }			   // Номер кабинета
+		public string LastVisitAnalyze { get; set; }   // Текст с анализом визизита
+		public string LastCommForPharm { get; set; }   // Комментарий для аптечников
+		public string LastPOSmaterials { get; set; }   // Оставленные POS-материалы
+
+
+		/*---------------------------------------------------------------*/
 		public OperatingShedule_Type osType { get; set; }
 		public List<OperatingSheduleItem> OperatingShedule { get; set; }
 		public WorkTime_Kind wtKind { get; set; }
 		public WorkTime_Days wtDays { get; set; }
 		public WorkTime_OddEven	wtOddEven { get; set; }
 		public WorkTime_Type chooseNwtType { get; set; } //необходимо в форме редактирования. КРИВО!!!!!
+		/*---------------------------------------------------------------*/
 
 		public string FIO () {
 			return (SecondName + ' ' + FirstName + ' ' + ThirdName).Trim();

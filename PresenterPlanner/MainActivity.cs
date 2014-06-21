@@ -28,6 +28,8 @@ namespace PresenterPlanner
 		protected Button btnSync = null;
 		protected Button btnReport = null;
 
+		protected const int DLG_WORK_TIME_WARNING = 20001;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			RequestWindowFeature(WindowFeatures.NoTitle);
@@ -84,8 +86,25 @@ namespace PresenterPlanner
 				var report = new Intent (this, typeof(ReportList));
 				StartActivity (report);
 			};
-
 		}
+
+		protected override Dialog OnCreateDialog (int id)
+		{
+			//return base.OnCreateDialog (id);
+			switch (id) {
+			case DLG_WORK_TIME_WARNING:
+				Dialog dialog = new Dialog (this);
+				dialog.SetTitle ("Предупреждение");
+				dialog.SetContentView (Resource.Layout.Dialog);
+				dialog.FindViewById <Button> (Resource.Id.btnDlgClose).Click += (object sender, EventArgs e) => {
+					this.Finish();
+				};
+
+				dialog.SetCancelable (false);
+				return dialog;
+			}
+			return null;
+		} 
 
 		protected override void OnResume ()
 		{
@@ -95,7 +114,14 @@ namespace PresenterPlanner
 			btnPresentations.Text = "Слайды";
 			btnSync.Text = "Синхронизация";
 			btnReport.Text = "Отчет";
+
 			base.OnResume ();
+
+//			if ((DateTime.Now < Convert.ToDateTime("09:00:00"))
+//				||
+//				(DateTime.Now > Convert.ToDateTime("20:00:00")) ) {
+//				ShowDialog (DLG_WORK_TIME_WARNING);
+//			}
 		}
 	}
 }

@@ -95,6 +95,14 @@
                     android:padding="5dp"
                     android:textSize="20dp" />
                 <TextView
+                    android:id="@+id/CabinetLabel"
+                    android:text="№ кабинета:"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/PositionLabel"
+                    android:padding="5dp"
+                    android:textSize="20dp" />
+                <TextView
                     android:text="Поликлиника:"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

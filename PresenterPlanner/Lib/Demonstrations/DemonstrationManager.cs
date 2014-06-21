@@ -17,8 +17,18 @@ namespace PresenterPlanner.Lib
 		{
 		}
 
-		public static void CurrentDemonstrationToArchive() {
+		public static void RefreshDemonstrations() 
+		{
+			DemonstrationRepository.ReReadDemonstrations();
+		}
+
+		public static void CurrentDemonstrationToArchive() 
+		{
 			DemonstrationRepository.WriteToArchive();
+		}
+
+		public static List<string> GetPathsAfterSplit() {
+			return DemonstrationRepository.GetSplitFiles();
 		}
 
 		public static Demonstration GetDemonstration(int docID, DateTime visitDate)

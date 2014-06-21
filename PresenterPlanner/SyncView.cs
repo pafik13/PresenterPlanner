@@ -5,6 +5,7 @@ using System.Xml.Serialization;
 using System.Net;
 using System.Text;
 using System.Threading;
+using System.Globalization;
 using System.Collections.Generic;
 
 using Android.App;
@@ -30,14 +31,18 @@ namespace PresenterPlanner
 		protected TextView txtVersion;
 		protected ProgressBar pB;
 
-		protected String versionOfNew = "";
-		protected String versionCurrent = "";
+		protected Dictionary <string, DLFile> files = null;
+
+		protected String vrsnAppNew = "";
+		protected String vrsnAppCurr = "";
+		protected String vrsnPrsCurr = "";
 		protected String downLoadPath = "";
 		protected bool isDownLoading = false;
 
 		WebClient client = null;
 
 		public Button btnUploadFiles;
+		public Button btnDownLoadPresents;
 		public TextView txtProgress;
 
 		protected override void OnCreate (Bundle bundle)
@@ -46,27 +51,58 @@ namespace PresenterPlanner
 
 			SetContentView (Resource.Layout.SyncView);
 
-			settings = Common.GetSettings ();
-			filePath = Path.Combine(Common.DatabaseFileDir(), settings.packageName);
+			Window.AddFlags (WindowManagerFlags.KeepScreenOn);
 
-			versionCurrent = PackageManager.GetPackageInfo (PackageName, PackageInfoFlags.Activities).VersionName;
+			settings = Common.GetSettings ();
+
+			files = new Dictionary <string, DLFile>();
+
+			files.Add("App", new DLFile () { path = Path.Combine(Common.DatabaseFileDir(), settings.packageName), isNew = false });
+
+			files.Add("Prs", new DLFile () { path = Path.Combine(Common.DatabaseFileDir(), "presents.xml.gz"), isNew = false });
+//			filePath = Path.Combine(Common.DatabaseFileDir(), settings.packageName);
+
+			vrsnAppCurr = PackageManager.GetPackageInfo (PackageName, PackageInfoFlags.Activities).VersionName;
+//			vrsnPrsCurr = settings.vrsnOfPresents;
 
 			client = new WebClient();
 
 			client.DownloadStringCompleted += (object sender, DownloadStringCompletedEventArgs e) => {
-				XmlDocument doc = new XmlDocument();
-				doc.LoadXml(e.Result);
-				versionOfNew = doc.GetElementById ("version").InnerText;
-				if ((versionOfNew != "") && (versionOfNew != versionCurrent)) {
-					RunOnUiThread(() => CheckLoadPackage());
+				if (File.Exists(files["Prs"].path)) {
+					string fileText = File.ReadAllText (files["Prs"].path);
+					vrsnPrsCurr = UploadFiles.GetMd5Hash (fileText);
+				} else {
+					vrsnPrsCurr = "";
+				};
+				try {
+					XmlDocument doc = new XmlDocument();
+					doc.LoadXml(e.Result);
+					files["App"].vrsnNew = doc.GetElementById ("versionApp").InnerText;
+					files["Prs"].vrsnNew = doc.GetElementById ("versionPrs").InnerText;
+					files["App"].isNew = !bool.Equals(vrsnAppCurr, files["App"].vrsnNew);
+					files["Prs"].isNew = !bool.Equals(vrsnPrsCurr, files["Prs"].vrsnNew);
+
+					if ((files["App"].isNew) || (files["Prs"].isNew)) {
+						RunOnUiThread(() => CheckLoadPackage());
+					}
+				} catch (Exception exc) {
+					RunOnUiThread(() => Toast.MakeText (this, exc.Message, ToastLength.Long).Show ());
 				}
 			};
 
 			client.DownloadDataCompleted += (object sender, DownloadDataCompletedEventArgs e) => {
-				File.WriteAllBytes(filePath, e.Result);
-				RunOnUiThread(() => Toast.MakeText(this, "ALL", ToastLength.Short).Show());
-				RunOnUiThread(() => pB.Visibility = ViewStates.Gone);
-				RunOnUiThread(() => CheckLoadPackage ());
+				if (File.Exists (filePath)) {
+					File.Delete (filePath);
+				};
+				try {
+					File.WriteAllBytes(filePath, e.Result);
+					RunOnUiThread(() => txtProgress.Text = "Загрузка окончена");
+					RunOnUiThread(() => Toast.MakeText(this, "ALL", ToastLength.Short).Show());
+					RunOnUiThread(() => pB.Visibility = ViewStates.Gone);
+					RunOnUiThread(() => CheckLoadPackage ());
+				} catch(Exception exc) {
+					RunOnUiThread(() => Toast.MakeText (this, exc.Message, ToastLength.Long).Show ());
+				}
 			};
 
 			client.DownloadProgressChanged += (object sender, DownloadProgressChangedEventArgs e) => {
@@ -86,6 +122,21 @@ namespace PresenterPlanner
 			btnUpdateApp = FindViewById <Button> (Resource.Id.btnUpdateApp);
 			btnUpdateApp.Visibility = ViewStates.Gone;
 
+			btnDownLoadPresents = FindViewById <Button> (Resource.Id.btnDownLoadPresents);
+			btnDownLoadPresents.Visibility = ViewStates.Gone;
+			btnDownLoadPresents.Click += (object sender, EventArgs e) => {
+				pB.Visibility = ViewStates.Visible;
+				if (DownLoad.HasConnection (this) && !client.IsBusy) {
+					filePath = files ["Prs"].path;
+					client.DownloadDataAsync (new Uri (settings.dlSite + "presents.xml.gz"));
+					files ["Prs"].isNew = false;
+					btnDownLoadPresents.Visibility = ViewStates.Gone;
+				} else {
+					btnDownLoadPresents.Text = "Подождите окончания другой загрузки...";
+				}
+			};
+
+
 			txtProgress = FindViewById <TextView> (Resource.Id.txtProgress);
 			txtProgress.Text = "Идет сверка информации с сервером...";
 			btnUploadFiles = FindViewById <Button> (Resource.Id.btnUploadFiles);
@@ -96,30 +147,35 @@ namespace PresenterPlanner
 					string loadResult = "";
 					RunOnUiThread(() => pB.Visibility = ViewStates.Visible);
 					RunOnUiThread(() => pB.Activated = true);
-					RunOnUiThread(() => pB.Max = 4);
+					RunOnUiThread(() => pB.Max = 5);
 					RunOnUiThread(() => pB.Progress = 0);
 					RunOnUiThread(() => txtProgress.Text = "Идет синхронизация с сервером...");
-					loadResult = UploadFiles.LoadFile("DoctorDB");
+					loadResult = UploadFiles.LoadFile("Settings");
 					Console.WriteLine(loadResult);
 					RunOnUiThread(() => pB.Progress = 1);
+					//RunOnUiThread(() => txtProgress.Text = loadResult);
+					Thread.Sleep(1000);
+					loadResult = UploadFiles.LoadFile("DoctorDB");
+					Console.WriteLine(loadResult);
+					RunOnUiThread(() => pB.Progress = 2);
 					//RunOnUiThread(() => txtProgress.Text = loadResult);
 					Thread.Sleep(1000);
 					//RunOnUiThread(() => txtProgress.Text = "load HospitalDB");
 					loadResult = UploadFiles.LoadFile("HospitalDB");
 					Console.WriteLine(loadResult);
-					RunOnUiThread(() => pB.Progress = 2);
+					RunOnUiThread(() => pB.Progress = 3);
 					//RunOnUiThread(() => txtProgress.Text = loadResult);
 					Thread.Sleep(1000);
 					//RunOnUiThread(() => txtProgress.Text = "load Demonstration");
 					loadResult = UploadFiles.LoadFile("Demonstration");
 					Console.WriteLine(loadResult);
-					RunOnUiThread(() => pB.Progress = 3);
+					RunOnUiThread(() => pB.Progress = 4);
 					//RunOnUiThread(() => txtProgress.Text = loadResult);
 					Thread.Sleep(1000);
-					if (loadResult.Contains("PROCESS GOOD")) {
-						DemonstrationManager.CurrentDemonstrationToArchive();
-
+					if (loadResult.Contains("FILE SAVED")) {
 						string reportString = UploadFiles.DownLoadReport();
+
+						DemonstrationManager.CurrentDemonstrationToArchive();
 
 						var serializer = new XmlSerializer (typeof(List<Report>));
 						using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(reportString))) {
@@ -153,7 +209,7 @@ namespace PresenterPlanner
 							}
 						}
 					}
-					RunOnUiThread(() => pB.Progress = 4);
+					RunOnUiThread(() => pB.Progress = 5);
 					Thread.Sleep(2500);
 					Console.WriteLine ("Uploading finished...");
 					RunOnUiThread(() => pB.Visibility = ViewStates.Gone);
@@ -177,44 +233,78 @@ namespace PresenterPlanner
 		protected override void OnResume ()
 		{
 			//CheckNeWVersion ();
+
+//			FileInfo fi = new FileInfo (Path.Combine(Common.DatabaseFileDir(), "presents.xml"));
+//			Zip.Compress (fi);
 			UploadFiles uf = new UploadFiles (this);
 			uf.CheckFiles ();
 			base.OnResume ();
 		}
 
-		public void CheckNeWVersion () {
+		public void CheckAppNewVersion () {
 			if (DownLoad.HasConnection(this) && !client.IsBusy) {
 				client.DownloadStringAsync (new Uri (Common.VersionFileLink));
 			}
 		}
 
 		protected void CheckLoadPackage () {
-			if (File.Exists (filePath)) {
-				versionOfNew = this.PackageManager.GetPackageArchiveInfo (filePath, PackageInfoFlags.Activities).VersionName;
-				if (versionCurrent == versionOfNew) {
-					File.Delete (filePath);
+			if (files["App"].isNew) {
+				if (File.Exists (files["App"].path)) {
+					vrsnAppNew = this.PackageManager.GetPackageArchiveInfo (files["App"].path, PackageInfoFlags.Activities).VersionName;
+					float newVrsn = Convert.ToSingle(vrsnAppNew, new CultureInfo("en-US"));
+					float curVrsn = Convert.ToSingle(vrsnAppCurr, new CultureInfo("en-US"));
+					if (curVrsn >= newVrsn) {
+						File.Delete (files["App"].path);
+					} else {
+						btnUpdateApp.Text = "Установить обновление программы";
+						btnUpdateApp.Visibility = ViewStates.Visible;
+						btnUpdateApp.Click -= OnClickDownLoadApp;
+						btnUpdateApp.Click += OnClickInstallApp;
+					}
 				} else {
-					btnUpdateApp.Text = "Установить обновление программы";
+					btnUpdateApp.Text = "Скачать обновление программы";
 					btnUpdateApp.Visibility = ViewStates.Visible;
-					btnUpdateApp.Click -= OnClickDownLoad;
-					btnUpdateApp.Click += OnClickInstall;
+					btnUpdateApp.Click -= OnClickInstallApp;
+					btnUpdateApp.Click += OnClickDownLoadApp;
 				}
+			}
+			if (files ["Prs"].isNew) {
+				btnDownLoadPresents.Text = "Скачать новую версию презентаций";
+				btnDownLoadPresents.Visibility = ViewStates.Visible;
 			} else {
-				btnUpdateApp.Text = "Скачать обновление программы";
-				btnUpdateApp.Visibility = ViewStates.Visible;
-				btnUpdateApp.Click -= OnClickInstall;
-				btnUpdateApp.Click += OnClickDownLoad;
+				if (File.Exists (files ["Prs"].path)) {
+					if (!bool.Equals (vrsnPrsCurr, files ["Prs"].vrsnNew)) {
+						try {
+							File.Delete (Path.Combine (Common.DatabaseFileDir (), "presents.xml"));
+							txtProgress.Text = "Идет разархивирование презентаций.";
+							FileInfo fi = new FileInfo(files ["Prs"].path);
+							Zip.Decompress (fi);
+							settings.vrsnOfPresents = files ["Prs"].vrsnNew;
+							Common.SetSettings (settings);
+							txtProgress.Text = "Идет чтение и проверка презентаций.";
+							DemonstrationManager.RefreshDemonstrations();
+							txtProgress.Text = "Презентации загружены!";
+						} catch(Exception exc) {
+							Toast.MakeText (this, exc.Message, ToastLength.Long).Show ();
+						}
+					}
+				} else {
+					txtProgress.Text = "Ошибка. Попробуйте загрузить презентации позже...";
+				}
 			}
 		}
 
-		public void OnClickDownLoad(object sender, EventArgs e) {
+		public void OnClickDownLoadApp (object sender, EventArgs e) {
 			pB.Visibility = ViewStates.Visible;
-			client.DownloadDataAsync (new Uri (settings.dlSite + settings.packageName));
+			if (DownLoad.HasConnection (this) && !client.IsBusy) {
+				filePath = files ["App"].path;
+				client.DownloadDataAsync (new Uri (settings.dlSite + settings.packageName));
+			}
 		}
 
-		public void OnClickInstall (object sender, EventArgs e) {
+		public void OnClickInstallApp (object sender, EventArgs e) {
 			Intent updateApp = new Intent(Intent.ActionView);
-			updateApp.SetDataAndType(Android.Net.Uri.FromFile(new Java.IO.File(filePath)), type);
+			updateApp.SetDataAndType(Android.Net.Uri.FromFile(new Java.IO.File(files ["App"].path)), type);
 			StartActivity(updateApp);
 		}
 	}

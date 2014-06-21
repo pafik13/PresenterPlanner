@@ -14,6 +14,7 @@ using Android.Content.PM;
 using Android.Locations;
 
 using PresenterPlanner.Lib;
+using PresenterPlanner.Lib.Doctors;
 
 namespace PresenterPlanner
 {
@@ -28,6 +29,7 @@ namespace PresenterPlanner
 		protected int doctorID;
 		protected double longtitude;
 		protected double latitude;
+		protected Doctor doctor; 
 		LinearLayout.LayoutParams lParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FillParent,LinearLayout.LayoutParams.FillParent,1);
 		ImageView ivSlide;
 		Demonstration demonstration;
@@ -59,8 +61,14 @@ namespace PresenterPlanner
 				Finish ();
 			}
 
+			doctor = DoctorManager.GetDoctor (doctorID, false);
+			if (doctor == null) {
+				Finish ();
+			}
+
 			lastSlideTime = DateTime.Now;
 			demonstration = DemonstrationManager.GetDemonstration (doctorID, DateTime.Today);
+			demonstration.analyze = doctor.LastVisitAnalyze;
 
 			if (demonstration.visitTime.Date != DateTime.Today) {
 				demonstration.visitTime = DateTime.Now;

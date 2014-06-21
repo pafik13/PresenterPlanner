@@ -25,6 +25,7 @@ namespace PresenterPlanner
 		protected EditText TNameTextEdit = null;
 		protected EditText TelTextEdit = null;
 		protected EditText EmailTextEdit = null;
+		protected EditText CabinetTextEdit = null;
 		protected AutoCompleteTextView SpecTextEdit = null;
 		protected AutoCompleteTextView PosTextEdit = null;
 		protected Button cancelDeleteButton = null;
@@ -51,11 +52,13 @@ namespace PresenterPlanner
 			// set our layout to be the home screen
 			SetContentView(Resource.Layout.DoctorDetails);
 
-			SNameTextEdit = FindViewById<EditText> (Resource.Id.txtSecondName);
-			FNameTextEdit = FindViewById<EditText> (Resource.Id.txtFirstName);
-			TNameTextEdit = FindViewById<EditText> (Resource.Id.txtThirdName);
-			TelTextEdit   = FindViewById<EditText> (Resource.Id.txtTel);
-			EmailTextEdit = FindViewById<EditText> (Resource.Id.txtEmail);
+			SNameTextEdit   = FindViewById<EditText> (Resource.Id.txtSecondName);
+			FNameTextEdit   = FindViewById<EditText> (Resource.Id.txtFirstName);
+			TNameTextEdit   = FindViewById<EditText> (Resource.Id.txtThirdName);
+			TelTextEdit     = FindViewById<EditText> (Resource.Id.txtTel);
+			EmailTextEdit   = FindViewById<EditText> (Resource.Id.txtEmail);
+			CabinetTextEdit = FindViewById<EditText> (Resource.Id.txtCabinet);
+
 			SpecTextEdit  = FindViewById<AutoCompleteTextView> (Resource.Id.actxtSpeciality);
 			ArrayAdapter SpecTextEditAdapter = new ArrayAdapter (this, Android.Resource.Layout.SimpleDropDownItem1Line, DoctorSpecialitys.GetSpecialitys());
 			SpecTextEdit.Adapter = SpecTextEditAdapter;
@@ -89,6 +92,9 @@ namespace PresenterPlanner
 			// E-mail
 			if(EmailTextEdit != null) { EmailTextEdit.Text = doctor.Email; }
 
+			// Cabinet
+			if(CabinetTextEdit != null) { CabinetTextEdit.Text = doctor.Cabinet; }
+
 			// Speciality
 			if(SpecTextEdit != null) { SpecTextEdit.Text = doctor.Speciality; }
 
@@ -107,7 +113,7 @@ namespace PresenterPlanner
 			} else {
 				switch (doctor.wtKind) {
 				case WorkTime_Kind.OddEven: { chIsDays.Checked = false; break; }
-				case WorkTime_Kind.Days: { chIsDays.Checked = true; break; }
+				case WorkTime_Kind.Days   : { chIsDays.Checked = true; break; }
 				}
 			}
 
@@ -153,6 +159,7 @@ namespace PresenterPlanner
 			doctor.IsChosen = false;
 			doctor.Tel = TelTextEdit.Text;
 			doctor.Email = EmailTextEdit.Text;
+			doctor.Cabinet = CabinetTextEdit.Text;
 			doctor.Speciality = SpecTextEdit.Text;
 			doctor.Position = PosTextEdit.Text;
 			DoctorManager.SaveDoctor(doctor);
@@ -188,6 +195,9 @@ namespace PresenterPlanner
 
 			case WorkTime_Type.Wed_From: { wtD.Wed_From = new DateTime(1,1,1, e.HourOfDay, e.Minute, 0); break; }
 			case WorkTime_Type.Wed_Till: { wtD.Wed_Till = new DateTime(1,1,1, e.HourOfDay, e.Minute, 0); break; }
+
+			case WorkTime_Type.Thu_From: { wtD.Thu_From = new DateTime(1,1,1, e.HourOfDay, e.Minute, 0); break; }
+			case WorkTime_Type.Thu_Till: { wtD.Thu_Till = new DateTime(1,1,1, e.HourOfDay, e.Minute, 0); break; }
 
 			case WorkTime_Type.Fri_From: { wtD.Fri_From = new DateTime(1,1,1, e.HourOfDay, e.Minute, 0); break; }
 			case WorkTime_Type.Fri_Till: { wtD.Fri_Till = new DateTime(1,1,1, e.HourOfDay, e.Minute, 0); break; }

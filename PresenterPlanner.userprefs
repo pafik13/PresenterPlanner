@@ -1,6 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\lenovo\Documents\PresenterPlanner\PresenterPlanner\SyncView.cs">
+    <Files>
+      <File FileName="PresenterPlanner\VisitsList.cs" Line="1" Column="1" />
+      <File FileName="PresenterPlanner\Lib\Doctors\Doctor.cs" Line="1" Column="1" />
+      <File FileName="PresenterPlanner\DoctorDetails.cs" Line="1" Column="1" />
+      <File FileName="c:\Users\lenovo\Documents\PresenterPlanner\PresenterPlanner\SyncView.cs" Line="300" Column="26" />
+      <File FileName="PresenterPlanner\Lib\Demonstrations\Demonstration.cs" Line="1" Column="1" />
+      <File FileName="PresenterPlanner\Lib\Demonstrations\DemonstrationManager.cs" Line="1" Column="1" />
+      <File FileName="PresenterPlanner\Lib\Demonstrations\DemonstrationRepository.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -9,7 +19,8 @@
     <Watch file="PresenterPlanner\Lib\DownLoad.cs" line="42" offsetX="917" offsetY="697" expression="saveFileStream" liveUpdate="False" />
     <Watch file="PresenterPlanner\Lib\DownLoad.cs" line="42" offsetX="917" offsetY="697" expression="saveFileStream" liveUpdate="False" />
     <Watch file="PresenterPlanner\Lib\DownLoad.cs" line="46" offsetX="525" offsetY="765" expression="saveFileStream" liveUpdate="False" />
-    <Watch file="PresenterPlanner\SyncView.cs" line="79" offsetX="462" offsetY="1325" expression="pB" liveUpdate="False" />
+    <Watch file="PresenterPlanner\SyncView.cs" line="79" offsetX="740" offsetY="1191" expression="pB" liveUpdate="False" />
+    <Watch file="PresenterPlanner\UploadFiles.cs" line="130" offsetX="406" offsetY="2193" expression="filePaths" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
-  <MonoDevelop.Ide.ItemProperties.PresenterPlanner MonoForAntroid.PreferredDevice="10.1in WXGA (Tablet)" AndroidDeviceId-Debug="CAF22CB0E015F9E" />
+  <MonoDevelop.Ide.ItemProperties.PresenterPlanner MonoForAntroid.PreferredDevice="3.7&quot; WVGA (Nexus One)" />
 </Properties>

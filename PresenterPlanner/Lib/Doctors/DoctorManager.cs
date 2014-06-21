@@ -10,9 +10,9 @@ namespace PresenterPlanner.Lib.Doctors
 		{
 		}
 
-		public static Doctor GetDoctor(int id)
+		public static Doctor GetDoctor(int id, bool isNeedNew = true)
 		{
-			return DoctorRepository.GetDoctor(id);
+			return DoctorRepository.GetDoctor(id, isNeedNew);
 		}
 
 		public static IList<Doctor> GetDoctors ()

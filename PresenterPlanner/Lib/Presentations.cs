@@ -27,7 +27,7 @@ namespace PresenterPlanner.Lib
 			}
 		}
 
-		static string DatabaseFilePath(){
+		public static string DatabaseFilePath(){
 			return System.IO.Path.Combine(Common.DatabaseFileDir(),"presents.xml");
 		}
 
